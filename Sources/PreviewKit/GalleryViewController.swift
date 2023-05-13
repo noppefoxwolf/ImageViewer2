@@ -12,7 +12,7 @@ import UIKit
 open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
   // UI
-  private let overlayView = BlurView()
+    private let overlayView: BlurView
   /// A custom view on the top of the gallery with layout using default (or custom) pinning settings for header.
   open var headerView: UIView?
   /// A custom view at the bottom of the gallery with layout using default (or custom) pinning settings for footer.
@@ -67,45 +67,29 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     self.itemsDelegate = itemsDelegate
     self.itemsDataSource = itemsDataSource
     self.configuration = configuration
-    var continueNextVideoOnFinish: Bool = false
-
-    ///Only those options relevant to the paging GalleryViewController are explicitly handled here, the rest is handled by ItemViewControllers
-    ///
-    overlayView.overlayColor = configuration.overlayColor
-    overlayView.blurringView.effect = UIBlurEffect(style: configuration.overlayBlurStyle)
-    overlayView.blurTargetOpacity = configuration.overlayBlurOpacity
-    overlayView.colorTargetOpacity = configuration.overlayColorOpacity
-    overlayView.blurPresentDuration = configuration.blurPresentDuration
-    overlayView.blurPresentDelay = configuration.blurPresentDelay
-    overlayView.colorPresentDuration = configuration.colorPresentDuration
-    overlayView.colorPresentDelay = configuration.colorPresentDelay
-    overlayView.blurDismissDuration = configuration.blurDismissDuration
-    overlayView.blurDismissDelay = configuration.blurDismissDelay
-    overlayView.colorDismissDuration = configuration.colorDismissDuration
-    overlayView.colorDismissDelay = configuration.colorDismissDelay
-    continueNextVideoOnFinish = configuration.continuePlayVideoOnEnd
+    self.overlayView = BlurView(configuration: configuration.overlayViewConfiguration)
+    
+    let continueNextVideoOnFinish = configuration.continuePlayVideoOnEnd
     scrubber.tintColor = configuration.videoControlsColor
     switch configuration.closeButtonMode {
     case .none: closeButton = nil
     case .custom(let button): closeButton = button
     case .builtIn: break
     }
+      
     switch configuration.seeAllCloseButtonMode {
-
     case .none: seeAllCloseButton = nil
     case .custom(let button): seeAllCloseButton = button
     case .builtIn: break
     }
 
     switch configuration.thumbnailsButtonMode {
-
     case .none: thumbnailsButton = nil
     case .custom(let button): thumbnailsButton = button
     case .builtIn: break
     }
 
     switch configuration.deleteButtonMode {
-
     case .none: deleteButton = nil
     case .custom(let button): deleteButton = button
     case .builtIn: break

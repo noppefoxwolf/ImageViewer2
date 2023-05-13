@@ -74,30 +74,6 @@ public struct GalleryConfiguration {
   ///Sets the duration of the animation when item is double tapped and transitions between ScaleToAspectFit & ScaleToAspectFill sizes.
   public var doubleTapToZoomDuration: TimeInterval = 0.15
 
-  ///Transition duration for the blur layer component of the overlay when Gallery is being presented.
-  public var blurPresentDuration: TimeInterval = 0.5
-
-  ///Delayed start for the transition of the blur layer component of the overlay when Gallery is being presented.
-  public var blurPresentDelay: TimeInterval = 0
-
-  ///Transition duration for the color layer component of the overlay when Gallery is being presented.
-  public var colorPresentDuration: TimeInterval = 0.25
-
-  ///Delayed start for the transition of color layer component of the overlay when Gallery is being presented.
-  public var colorPresentDelay: TimeInterval = 0
-
-  ///Transition duration for the blur layer component of the overlay when Gallery is being dismissed.
-  public var blurDismissDuration: TimeInterval = 0.1
-
-  ///Transition delay for the blur layer component of the overlay when Gallery is being dismissed.
-  public var blurDismissDelay: TimeInterval = 0.4
-
-  ///Transition duration for the color layer component of the overlay when Gallery is being dismissed.
-  public var colorDismissDuration: TimeInterval = 0.45
-
-  ///Transition delay for the color layer component of the overlay when Gallery is being dismissed.
-  public var colorDismissDelay: TimeInterval = 0
-
   ///Transition duration for the item when the fade-in/fade-out effect is used globally for items while Gallery is being presented /dismissed.
   public var itemFadeDuration: TimeInterval = 0.3
 
@@ -125,17 +101,7 @@ public struct GalleryConfiguration {
   ///For the image to be reverse displaced, it must be visible in the parent view frame on screen, otherwise it's pointless to do the reverse displacement animation as we would be animating to out of bounds of the screen. However, there might be edge cases where only a tiny percentage of image is visible on screen, so reverse-displacing to that might not be desirable / visually pleasing. To address this problem, we can define a valid area that will be smaller by a given margin and sit centered inside the parent frame. For example, setting a value of 20 means the reverse displaced image must be in a rect that is inside the parent frame and the margin on all sides is to the parent frame is 20 points.
   public var displacementInsetMargin: CGFloat = 50
 
-  ///Base color of the overlay layer that is mostly visible when images are displaced (gallery is being presented), rotated and interactively dismissed.
-  public var overlayColor: UIColor = .black
-
-  ///Allows to select the overall tone on the B&W scale of the blur layer in the overlay.
-  public var overlayBlurStyle: UIBlurEffect.Style = .light
-
-  ///The opacity of overlay layer when the displacement effect finishes anf the gallery is fully presented. Valid values are from 0 to 1 where 1 is full opacity i.e the overlay layer is fully opaque, 0 is completely transparent and effectively invisible.
-  public var overlayBlurOpacity: CGFloat = 1
-
-  ///The opacity of overlay layer when the displacement effect finishes anf the gallery is fully presented. Valid values are from 0 to 1 where 1 is full opacity i.e the overlay layer is fully opaque, 0 is completely transparent and effectively invisible.
-  public var overlayColorOpacity: CGFloat = 1
+    public var overlayViewConfiguration: BlurViewConfiguration = .init()
 
   ///The minimum velocity needed for the image to continue on its swipe-to-dismiss path instead of returning to its original position. The velocity is in scalar units per second, which in our case represents points on screen per second. When the thumb moves on screen and eventually is lifted, it traveled along a path and the speed represents the number of points it traveled in the last 1000 msec before it was lifted.
   public var swipeToDismissThresholdVelocity: CGFloat = 500
