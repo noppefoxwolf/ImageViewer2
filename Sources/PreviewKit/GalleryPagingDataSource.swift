@@ -84,7 +84,7 @@ final class GalleryPagingDataSource: NSObject, UIPageViewControllerDataSource {
 
     guard let itemsDataSource else { return UIViewController() }
 
-    let item = itemsDataSource.provideGalleryItem(itemIndex)
+    let item = itemsDataSource.galleryItem(at: itemIndex)
 
     switch item {
 

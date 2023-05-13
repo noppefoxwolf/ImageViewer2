@@ -163,9 +163,8 @@ extension ViewController: GalleryItemsDataSource {
         items.count
     }
 
-    func provideGalleryItem(_ index: Int) -> GalleryItem {
-
-        return items[index].galleryItem
+    func galleryItem(at index: Int) -> GalleryItem {
+        items[index].galleryItem
     }
 }
 

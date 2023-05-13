@@ -115,7 +115,7 @@ class ThumbnailsViewController: UICollectionViewController, UICollectionViewDele
       collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
       as! ThumbnailCell
 
-    let item = itemsDataSource.provideGalleryItem((indexPath as NSIndexPath).row)
+    let item = itemsDataSource.galleryItem(at: (indexPath as NSIndexPath).row)
 
     switch item {
 
