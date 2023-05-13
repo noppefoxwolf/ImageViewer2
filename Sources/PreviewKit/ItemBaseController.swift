@@ -200,29 +200,22 @@ where T: ItemView {
 
     createViewHierarchy()
 
-    fetchImage()
+      Task {
+          await fetchImage()
+      }
   }
 
-  public func fetchImage() {
+  public func fetchImage() async {
+      guard let image = await fetchImageBlock() else { return }
+      activityIndicatorView.stopAnimating()
 
-    fetchImageBlock { [weak self] image in
+      itemView.image = image
+      itemView.isAccessibilityElement = image.isAccessibilityElement
+      itemView.accessibilityLabel = image.accessibilityLabel
+      itemView.accessibilityTraits = image.accessibilityTraits
 
-      if let image {
-
-        DispatchQueue.main.async {
-          self?.activityIndicatorView.stopAnimating()
-
-          var itemView = self?.itemView
-          itemView?.image = image
-          itemView?.isAccessibilityElement = image.isAccessibilityElement
-          itemView?.accessibilityLabel = image.accessibilityLabel
-          itemView?.accessibilityTraits = image.accessibilityTraits
-
-          self?.view.setNeedsLayout()
-          self?.view.layoutIfNeeded()
-        }
-      }
-    }
+      view.setNeedsLayout()
+      view.layoutIfNeeded()
   }
 
   override open func viewWillAppear(_ animated: Bool) {

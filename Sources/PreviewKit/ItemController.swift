@@ -17,7 +17,7 @@ public protocol ItemController: AnyObject {
   var delegate: ItemControllerDelegate? { get set }
   var displacedViewsDataSource: GalleryDisplacedViewsDataSource? { get set }
 
-  func fetchImage()
+  func fetchImage() async
 
   func presentItem(alongsideAnimation: () -> Void, completion: @escaping () -> Void)
   func dismissItem(alongsideAnimation: () -> Void, completion: @escaping () -> Void)

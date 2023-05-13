@@ -120,34 +120,22 @@ class ThumbnailsViewController: UICollectionViewController, UICollectionViewDele
     switch item {
 
     case .image(let fetchImageBlock):
-
-      fetchImageBlock { image in
-
-        if let image {
-
-          cell.imageView.image = image
+        Task {
+            let image = await fetchImageBlock()
+            cell.imageView.image = image
         }
-      }
 
     case .video(let fetchImageBlock, _):
-
-      fetchImageBlock { image in
-
-        if let image {
-
-          cell.imageView.image = image
+        Task {
+            let image = await fetchImageBlock()
+            cell.imageView.image = image
         }
-      }
 
     case .custom(let fetchImageBlock, _):
-
-      fetchImageBlock { image in
-
-        if let image {
-
-          cell.imageView.image = image
+        Task {
+            let image = await fetchImageBlock()
+            cell.imageView.image = image
         }
-      }
     }
 
     return cell

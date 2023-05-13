@@ -8,8 +8,7 @@
 
 import UIKit
 
-public typealias ImageCompletion = (UIImage?) -> Void
-public typealias FetchImageBlock = (@escaping ImageCompletion) -> Void
+public typealias FetchImageBlock = () async -> UIImage?
 public typealias ItemViewControllerBlock = (
   _ index: Int, _ itemCount: Int, _ fetchImageBlock: FetchImageBlock,
   _ configuration: GalleryConfiguration, _ isInitialController: Bool

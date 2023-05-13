@@ -554,7 +554,9 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     guard let firstVC = viewControllers?.first, let itemController = firstVC as? ItemController
     else { return }
 
-    itemController.fetchImage()
+      Task {
+          await itemController.fetchImage()
+      }
   }
 
   // MARK: - Animations
