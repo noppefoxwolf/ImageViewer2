@@ -16,8 +16,8 @@ For the latest changes see the [CHANGELOG](CHANGELOG.md)
 
 ### Swift Package Manager
 
-```
-.pa
+```swift
+.package(url: "https://github.com/noppefoxwolf/PreviewKit", branch: "main"),
 ```
 
 
@@ -31,11 +31,11 @@ self.presentImageGallery(GalleryViewController(startIndex: 0, itemsDataSource: s
 
 // The GalleryItemsDataSource provides the items to show
 extension ViewController: GalleryItemsDataSource {
-    func itemCount() -> Int {
+    func numberOfGalleryItems() -> Int {
         return items.count
     }
 
-    func provideGalleryItem(_ index: Int) -> GalleryItem {
+    func galleryItem(at index: Int) -> GalleryItem {
         return items[index].galleryItem
     }
 }
