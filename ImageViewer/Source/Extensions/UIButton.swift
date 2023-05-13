@@ -31,6 +31,7 @@ extension UIButton {
         
         button.configuration = UIButton.Configuration.plain()
         button.configuration?.image = UIImage(systemName: "play.fill")
+        button.tintColor = .red
 
         return button
     }
@@ -47,10 +48,20 @@ extension UIButton {
     }
 
     static func pauseButton(width: CGFloat, height: CGFloat) -> UIButton {
+
         let button = UIButton(type: .custom)
-        button.configuration = UIButton.Configuration.plain()
-        button.configuration?.image = UIImage(systemName: "pause.fill")
-        button.configuration?.baseForegroundColor = .white
+        button.contentHorizontalAlignment = .center
+
+        let elementHeight = min(20, height)
+        let elementSize = CGSize(width: elementHeight * 0.3, height: elementHeight)
+        let distance: CGFloat = elementHeight * 0.2
+
+        let pauseImageNormal = CAShapeLayer.pauseShape(UIColor.white, elementSize: elementSize, elementDistance: distance).toImage()
+        button.setImage(pauseImageNormal, for: .normal)
+
+        let pauseImageHighlighted = CAShapeLayer.pauseShape(UIColor.white.withAlphaComponent(0.7), elementSize: elementSize, elementDistance: distance).toImage()
+        button.setImage(pauseImageHighlighted, for: .highlighted)
+
         return button
     }
 
