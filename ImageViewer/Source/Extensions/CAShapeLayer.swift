@@ -21,17 +21,6 @@ extension CAShapeLayer {
         return triangle
     }
 
-    static func playShape(_ fillColor: UIColor, triangleEdgeLength: CGFloat) -> CAShapeLayer {
-
-        let triangle = CAShapeLayer()
-        let altitude = (sqrt(3) / 2) * triangleEdgeLength
-        triangle.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: altitude, height: triangleEdgeLength))
-        triangle.path = UIBezierPath.equilateralTriangle(triangleEdgeLength).cgPath
-        triangle.fillColor = fillColor.cgColor
-
-        return triangle
-    }
-
     static func pauseShape(_ fillColor: UIColor, elementSize: CGSize, elementDistance: CGFloat) -> CAShapeLayer {
 
         let element = CALayer()

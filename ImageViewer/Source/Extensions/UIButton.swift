@@ -26,49 +26,24 @@ extension UIButton {
 
     static func replayButton(width: CGFloat, height: CGFloat) -> UIButton {
 
-        let smallerEdge = min(width, height)
-        let triangleEdgeLength: CGFloat = min(smallerEdge, 20)
-
         let button = UIButton(type: .custom)
         button.bounds.size = CGSize(width: width, height: height)
-        button.contentHorizontalAlignment = .center
-
-        let playShapeNormal = CAShapeLayer.playShape(UIColor.red, triangleEdgeLength: triangleEdgeLength).toImage()
-        button.setImage(playShapeNormal, for: .normal)
-
-        let playShapeHighlighted = CAShapeLayer.playShape(UIColor.red.withAlphaComponent(0.7), triangleEdgeLength: triangleEdgeLength).toImage()
-        button.setImage(playShapeHighlighted, for: .highlighted)
-
-        ///the geometric center of equilateral triangle is not the same as the geometric center of its smallest bounding rect. There is some offset between the two centers to the left when the triangle points to the right. We have to shift the triangle to the right by that offset.
-        let altitude = (sqrt(3) / 2) * triangleEdgeLength
-        let innerCircleDiameter = (sqrt(3) / 6) * triangleEdgeLength
-
-        button.imageEdgeInsets.left = altitude / 2 - innerCircleDiameter
+        
+        button.configuration = UIButton.Configuration.plain()
+        button.configuration?.image = UIImage(systemName: "play.fill")
+        button.tintColor = .red
 
         return button
     }
 
     static func playButton(width: CGFloat, height: CGFloat) -> UIButton {
 
-        let smallerEdge = min(width, height)
-        let triangleEdgeLength: CGFloat = min(smallerEdge, 20)
-
         let button = UIButton(type: .custom)
         button.bounds.size = CGSize(width: width, height: height)
         button.contentHorizontalAlignment = .center
-
-        let playShapeNormal = CAShapeLayer.playShape(UIColor.white, triangleEdgeLength: triangleEdgeLength).toImage()
-        button.setImage(playShapeNormal, for: .normal)
-
-        let playShapeHighlighted = CAShapeLayer.playShape(UIColor.white.withAlphaComponent(0.7), triangleEdgeLength: triangleEdgeLength).toImage()
-        button.setImage(playShapeHighlighted, for: .highlighted)
-
-        ///the geometric center of equilateral triangle is not the same as the geometric center of its smallest bounding rect. There is some offset between the two centers to the left when the triangle points to the right. We have to shift the triangle to the right by that offset.
-        let altitude = (sqrt(3) / 2) * triangleEdgeLength
-        let innerCircleDiameter = (sqrt(3) / 6) * triangleEdgeLength
-
-        button.imageEdgeInsets.left = altitude / 2 - innerCircleDiameter
-
+        button.configuration = UIButton.Configuration.plain()
+        button.configuration?.image = UIImage(systemName: "play.fill")
+        
         return button
     }
 
