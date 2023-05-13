@@ -69,7 +69,6 @@
 		EBA0A9541C89C653005B8DD3 /* GalleryConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA0A9521C89C653005B8DD3 /* GalleryConfiguration.swift */; };
 		EBA76F711D4F855C0094931F /* ItemBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA76F701D4F855C0094931F /* ItemBaseController.swift */; };
 		EBA76F721D4F855C0094931F /* ItemBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA76F701D4F855C0094931F /* ItemBaseController.swift */; };
-		EBA8CB341D38E51500545E5B /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBFCB961D26CBA2007E7244 /* BlurView.swift */; };
 		EBA90E431C875225000AA697 /* ImageFadeInHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA90E421C875225000AA697 /* ImageFadeInHandler.swift */; };
 		EBA90E441C875225000AA697 /* ImageFadeInHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA90E421C875225000AA697 /* ImageFadeInHandler.swift */; };
 		EBAF4C601D391C720039CA93 /* GalleryPagingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAF4C5F1D391C720039CA93 /* GalleryPagingDataSource.swift */; };
@@ -78,7 +77,6 @@
 		EBAF4C641D3937AE0039CA93 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAF4C621D3937AE0039CA93 /* ImageViewController.swift */; };
 		EBAF4C661D3937BC0039CA93 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAF4C651D3937BC0039CA93 /* VideoViewController.swift */; };
 		EBAF4C671D3937BC0039CA93 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAF4C651D3937BC0039CA93 /* VideoViewController.swift */; };
-		EBBFCB971D26CBA2007E7244 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBFCB961D26CBA2007E7244 /* BlurView.swift */; };
 		EBE627061D2688890095999A /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE627051D2688890095999A /* GalleryViewController.swift */; };
 		EBE627071D2688890095999A /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE627051D2688890095999A /* GalleryViewController.swift */; };
 		EBE627091D2689AD0095999A /* ItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE627081D2689AD0095999A /* ItemController.swift */; };
@@ -134,7 +132,6 @@
 		EBAF4C5F1D391C720039CA93 /* GalleryPagingDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryPagingDataSource.swift; sourceTree = "<group>"; };
 		EBAF4C621D3937AE0039CA93 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		EBAF4C651D3937BC0039CA93 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
-		EBBFCB961D26CBA2007E7244 /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		EBE627051D2688890095999A /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		EBE627081D2689AD0095999A /* ItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemController.swift; sourceTree = "<group>"; };
 		EBE6270E1D268A7F0095999A /* GalleryDisplacedViewsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryDisplacedViewsDataSource.swift; sourceTree = "<group>"; };
@@ -231,7 +228,6 @@
 		C7DABE581C1224EA00F5BD7B /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				EBBFCB961D26CBA2007E7244 /* BlurView.swift */,
 				EB1F6E181C908DDF0046A7FB /* Configuration */,
 				C7DABE5D1C12275C00F5BD7B /* Extensions */,
 				EBA90E421C875225000AA697 /* ImageFadeInHandler.swift */,
@@ -524,7 +520,6 @@
 				EB17B3781D4A51D200EED1DA /* UIBezierPath.swift in Sources */,
 				EB4DEBC11C84A8B400D5F897 /* UtilityFunctions.swift in Sources */,
 				EB3464F51D4BAA19009494B5 /* UISlider.swift in Sources */,
-				EBA8CB341D38E51500545E5B /* BlurView.swift in Sources */,
 				EBA0A9531C89C653005B8DD3 /* GalleryConfiguration.swift in Sources */,
 				EB3464F01D4B9066009494B5 /* CALayer.swift in Sources */,
 				EB17B3811D4A6E7F00EED1DA /* UIButton.swift in Sources */,
@@ -587,7 +582,6 @@
 				EBA0A9541C89C653005B8DD3 /* GalleryConfiguration.swift in Sources */,
 				EB17B3791D4A51D200EED1DA /* UIBezierPath.swift in Sources */,
 				EB1DB6EA1D3E595D00DC9064 /* UIApplication.swift in Sources */,
-				EBBFCB971D26CBA2007E7244 /* BlurView.swift in Sources */,
 				EB8BEC7B1D3D1CB500DCE3EC /* ItemControllerDelegate.swift in Sources */,
 				EB60EE5A1D590E8B00CC5BA8 /* Slider.swift in Sources */,
 				EB40C3741C9C5BF1004EA215 /* UIViewController.swift in Sources */,

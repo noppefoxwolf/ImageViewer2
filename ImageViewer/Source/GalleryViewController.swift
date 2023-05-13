@@ -12,7 +12,7 @@ import AVFoundation
 open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
     // UI
-    private let overlayView = BlurView()
+    private let overlayView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterialDark))
     /// A custom view on the top of the gallery with layout using default (or custom) pinning settings for header.
     open var headerView: UIView?
     /// A custom view at the bottom of the gallery with layout using default (or custom) pinning settings for footer.
@@ -93,18 +93,6 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
             case .decorationViewsFadeDuration(let duration):    decorationViewsFadeDuration = duration
             case .rotationDuration(let duration):               rotationDuration = duration
             case .rotationMode(let mode):                       rotationMode = mode
-            case .overlayColor(let color):                      overlayView.overlayColor = color
-            case .overlayBlurStyle(let style):                  overlayView.blurringView.effect = UIBlurEffect(style: style)
-            case .overlayBlurOpacity(let opacity):              overlayView.blurTargetOpacity = opacity
-            case .overlayColorOpacity(let opacity):             overlayView.colorTargetOpacity = opacity
-            case .blurPresentDuration(let duration):            overlayView.blurPresentDuration = duration
-            case .blurPresentDelay(let delay):                  overlayView.blurPresentDelay = delay
-            case .colorPresentDuration(let duration):           overlayView.colorPresentDuration = duration
-            case .colorPresentDelay(let delay):                 overlayView.colorPresentDelay = delay
-            case .blurDismissDuration(let duration):            overlayView.blurDismissDuration = duration
-            case .blurDismissDelay(let delay):                  overlayView.blurDismissDelay = delay
-            case .colorDismissDuration(let duration):           overlayView.colorDismissDuration = duration
-            case .colorDismissDelay(let delay):                 overlayView.colorDismissDelay = delay
             case .continuePlayVideoOnEnd(let enabled):          continueNextVideoOnFinish = enabled
             case .seeAllCloseLayout(let layout):                seeAllCloseLayout = layout
             case .videoControlsColor(let color):                scrubber.tintColor = color
@@ -278,7 +266,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         ///Animates decoration views to the initial state if they are set to be visible on launch. We do not need to do anything if they are set to be hidden because they are already set up as hidden by default. Unhiding them for the launch is part of chosen UX.
         initialItemController?.presentItem(alongsideAnimation: { [weak self] in
 
-            self?.overlayView.present()
+            //self?.overlayView.present()
 
             }, completion: { [weak self] in
 
@@ -569,7 +557,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
                     itemController.dismissItem(alongsideAnimation: {
 
-                        strongSelf.overlayView.dismiss()
+                        //strongSelf.overlayView.dismiss()
 
                         }, completion: { [weak self] in
 
@@ -693,8 +681,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
             }
         }
 
-        self.overlayView.blurringView.alpha = 1 - distance
-        self.overlayView.colorView.alpha = 1 - distance
+        self.overlayView.alpha = 1 - distance
     }
 
     public func itemControllerDidFinishSwipeToDismissSuccessfully() {
