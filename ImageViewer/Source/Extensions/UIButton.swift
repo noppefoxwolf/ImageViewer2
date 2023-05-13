@@ -91,10 +91,10 @@ extension UIButton {
     }
 
     static func closeButton() -> UIButton {
-
         let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 50, height: 50)))
-        button.setImage(CAShapeLayer.closeShape(edgeLength: 15).toImage(), for: .normal)
-
+        button.configuration = UIButton.Configuration.plain()
+        button.configuration?.image = UIImage(systemName: "xmark")
+        button.configuration?.baseForegroundColor = .white
         return button
     }
 
@@ -102,7 +102,6 @@ extension UIButton {
 
         let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 80, height: 50)))
         button.setTitle("See All", for: .normal)
-        //button.titleLabel?.textColor = UIColor.redColor()
 
         return button
     }
