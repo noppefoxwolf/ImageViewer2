@@ -11,7 +11,7 @@ struct App: SwiftUI.App {
 
 struct Root: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
-        UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController()!
+        ViewController()
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {

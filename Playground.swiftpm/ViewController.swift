@@ -19,31 +19,59 @@ struct DataItem {
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var image1: UIImageView!
-    @IBOutlet weak var image2: UIImageView!
-    @IBOutlet weak var image3: UIImageView!
-    @IBOutlet weak var image4: UIImageView!
-    @IBOutlet weak var image5: UIImageView!
-    @IBOutlet weak var image6: UIImageView!
-    @IBOutlet weak var image7: UIImageView!
+    let imageView1 = UIImageView()
+    let imageView2 = UIImageView()
+    let imageView3 = UIImageView()
+    let imageView4 = UIImageView()
+    let imageView5 = UIImageView()
+    let imageView6 = UIImageView()
+    let imageView7 = UIImageView()
 
     var items: [DataItem] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imageView1.image = UIImage(named: "0")
+        imageView2.image = UIImage(named: "1")
+        imageView3.image = UIImage(named: "2")
+        imageView4.image = UIImage(named: "3")
+        imageView5.image = UIImage(named: "4")
+        imageView6.image = UIImage(named: "5")
+        imageView7.image = UIImage(named: "6")
 
-        let imageViews = [image1, image2, image3, image4, image5, image6, image7]
+        let imageViews = [imageView1, imageView2, imageView3, imageView4, imageView5, imageView6, imageView7]
+        
+        let stackView = UIStackView(arrangedSubviews: imageViews)
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: view.topAnchor),
+            view.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
+            stackView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            view.rightAnchor.constraint(equalTo: stackView.rightAnchor),
+        ])
+        
+        for imageView in imageViews {
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+            let tapGesture = UITapGestureRecognizer()
+            tapGesture.addTarget(self, action: #selector(showGalleryImageViewer))
+            imageView.addGestureRecognizer(tapGesture)
+            imageView.isUserInteractionEnabled = true
+        }
 
         for (index, imageView) in imageViews.enumerated() {
 
-            guard let imageView else { continue }
             var galleryItem: GalleryItem!
 
             switch index {
 
             case 2:
 
-                galleryItem = GalleryItem.video(fetchPreviewImageBlock: { UIImage(named: "2")! }, videoURL: URL (string: "http://video.dailymail.co.uk/video/mol/test/2016/09/21/5739239377694275356/1024x576_MP4_5739239377694275356.mp4")!)
+                galleryItem = GalleryItem.video(fetchPreviewImageBlock: { UIImage(named: "2")! }, videoURL: URL (string: "https://video.dailymail.co.uk/video/mol/test/2016/09/21/5739239377694275356/1024x576_MP4_5739239377694275356.mp4")!)
 
             case 4:
 
