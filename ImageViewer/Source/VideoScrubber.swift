@@ -203,7 +203,7 @@ open class VideoScrubber: UIControl {
 
         if let player = self.player {
 
-            self.playButton.isHidden = player.isPlaying()
+            self.playButton.isHidden = player.isPlaying
             self.pauseButton.isHidden = !self.playButton.isHidden
             self.replayButton.isHidden = true
         }

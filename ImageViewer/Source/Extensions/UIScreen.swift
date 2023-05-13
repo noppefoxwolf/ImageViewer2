@@ -9,6 +9,7 @@
 import UIKit
 
 public extension UIScreen {
+    
     class var hasNotch: Bool {
         // This will of course fail if Apple produces an notchless iPhone with these dimensions,
         // but is the simplest detection mechanism so far.

@@ -11,7 +11,6 @@ import CoreGraphics
 extension CGSize {
 
     func inverted() -> CGSize {
-
-        return CGSize(width: self.height, height: self.width)
+        CGSize(width: self.height, height: self.width)
     }
 }
