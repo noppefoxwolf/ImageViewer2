@@ -36,16 +36,7 @@ class VideoViewController: ItemBaseController<VideoView> {
     self.player = AVPlayer(url: self.videoURL)
 
     ///Only those options relevant to the paging VideoViewController are explicitly handled here, the rest is handled by ItemViewControllers
-    for item in configuration {
-
-      switch item {
-
-      case .videoAutoPlay(let enabled):
-        autoPlayEnabled = enabled
-
-      default: break
-      }
-    }
+    autoPlayEnabled = configuration.videoAutoPlay
 
     super.init(
       index: index, itemCount: itemCount, fetchImageBlock: fetchImageBlock,

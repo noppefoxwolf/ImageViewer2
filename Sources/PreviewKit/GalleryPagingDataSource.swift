@@ -17,7 +17,7 @@ final class GalleryPagingDataSource: NSObject, UIPageViewControllerDataSource {
   private let configuration: GalleryConfiguration
   private var pagingMode = GalleryPagingMode.standard
   private var itemCount: Int {
-      itemsDataSource?.numberOfGalleryItems() ?? 0
+    itemsDataSource?.numberOfGalleryItems() ?? 0
   }
   private unowned var scrubber: VideoScrubber
 
@@ -33,15 +33,7 @@ final class GalleryPagingDataSource: NSObject, UIPageViewControllerDataSource {
     self.configuration = configuration
 
     if itemsDataSource.numberOfGalleryItems() > 1 {  // Potential carousel mode present in configuration only makes sense for more than 1 item
-
-      for item in configuration {
-
-        switch item {
-
-        case .pagingMode(let mode): pagingMode = mode
-        default: break
-        }
-      }
+      pagingMode = configuration.pagingMode
     }
   }
 
@@ -91,7 +83,8 @@ final class GalleryPagingDataSource: NSObject, UIPageViewControllerDataSource {
     case .image(let fetchImageBlock):
 
       let imageController = ImageViewController(
-        index: itemIndex, itemCount: itemsDataSource.numberOfGalleryItems(), fetchImageBlock: fetchImageBlock,
+        index: itemIndex, itemCount: itemsDataSource.numberOfGalleryItems(),
+        fetchImageBlock: fetchImageBlock,
         configuration: configuration, isInitialController: isInitial)
       imageController.delegate = itemControllerDelegate
       imageController.displacedViewsDataSource = displacedViewsDataSource
@@ -101,7 +94,8 @@ final class GalleryPagingDataSource: NSObject, UIPageViewControllerDataSource {
     case .video(let fetchImageBlock, let videoURL):
 
       let videoController = VideoViewController(
-        index: itemIndex, itemCount: itemsDataSource.numberOfGalleryItems(), fetchImageBlock: fetchImageBlock,
+        index: itemIndex, itemCount: itemsDataSource.numberOfGalleryItems(),
+        fetchImageBlock: fetchImageBlock,
         videoURL: videoURL, scrubber: scrubber, configuration: configuration,
         isInitialController: isInitial)
 
@@ -114,7 +108,8 @@ final class GalleryPagingDataSource: NSObject, UIPageViewControllerDataSource {
 
       guard
         let itemController = itemViewControllerBlock(
-          itemIndex, itemsDataSource.numberOfGalleryItems(), fetchImageBlock, configuration, isInitial)
+          itemIndex, itemsDataSource.numberOfGalleryItems(), fetchImageBlock, configuration,
+          isInitial)
           as? ItemController, let vc = itemController as? UIViewController
       else { return UIViewController() }
 

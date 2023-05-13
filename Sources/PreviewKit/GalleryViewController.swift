@@ -73,7 +73,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     startIndex: Int, itemsDataSource: GalleryItemsDataSource,
     itemsDelegate: GalleryItemsDelegate? = nil,
     displacedViewsDataSource: GalleryDisplacedViewsDataSource? = nil,
-    configuration: GalleryConfiguration = []
+    configuration: GalleryConfiguration = .init()
   ) {
 
     self.currentIndex = startIndex
@@ -82,76 +82,58 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     var continueNextVideoOnFinish: Bool = false
 
     ///Only those options relevant to the paging GalleryViewController are explicitly handled here, the rest is handled by ItemViewControllers
-    for item in configuration {
+    ///
+    spineDividerWidth = Float(configuration.imageDividerWidth)
+    galleryPagingMode = configuration.pagingMode
+    headerLayout = configuration.headerViewLayout
+    footerLayout = configuration.footerViewLayout
+    closeLayout = configuration.closeLayout
+    deleteLayout = configuration.deleteLayout
+    thumbnailsLayout = configuration.thumbnailsLayout
+    statusBarHidden = configuration.statusBarHidden
+    decorationViewsHidden = configuration.hideDecorationViewsOnLaunch
+    decorationViewsFadeDuration = configuration.decorationViewsFadeDuration
+    rotationDuration = configuration.rotationDuration
+    rotationMode = configuration.rotationMode
+    overlayView.overlayColor = configuration.overlayColor
+    overlayView.blurringView.effect = UIBlurEffect(style: configuration.overlayBlurStyle)
+    overlayView.blurTargetOpacity = configuration.overlayBlurOpacity
+    overlayView.colorTargetOpacity = configuration.overlayColorOpacity
+    overlayView.blurPresentDuration = configuration.blurPresentDuration
+    overlayView.blurPresentDelay = configuration.blurPresentDelay
+    overlayView.colorPresentDuration = configuration.colorPresentDuration
+    overlayView.colorPresentDelay = configuration.colorPresentDelay
+    overlayView.blurDismissDuration = configuration.blurDismissDuration
+    overlayView.blurDismissDelay = configuration.blurDismissDelay
+    overlayView.colorDismissDuration = configuration.colorDismissDuration
+    overlayView.colorDismissDelay = configuration.colorDismissDelay
+    continueNextVideoOnFinish = configuration.continuePlayVideoOnEnd
+    seeAllCloseLayout = configuration.seeAllCloseLayout
+    scrubber.tintColor = configuration.videoControlsColor
+    switch configuration.closeButtonMode {
+    case .none: closeButton = nil
+    case .custom(let button): closeButton = button
+    case .builtIn: break
+    }
+    switch configuration.seeAllCloseButtonMode {
 
-      switch item {
+    case .none: seeAllCloseButton = nil
+    case .custom(let button): seeAllCloseButton = button
+    case .builtIn: break
+    }
 
-      case .imageDividerWidth(let width): spineDividerWidth = Float(width)
-      case .pagingMode(let mode): galleryPagingMode = mode
-      case .headerViewLayout(let layout): headerLayout = layout
-      case .footerViewLayout(let layout): footerLayout = layout
-      case .closeLayout(let layout): closeLayout = layout
-      case .deleteLayout(let layout): deleteLayout = layout
-      case .thumbnailsLayout(let layout): thumbnailsLayout = layout
-      case .statusBarHidden(let hidden): statusBarHidden = hidden
-      case .hideDecorationViewsOnLaunch(let hidden): decorationViewsHidden = hidden
-      case .decorationViewsFadeDuration(let duration): decorationViewsFadeDuration = duration
-      case .rotationDuration(let duration): rotationDuration = duration
-      case .rotationMode(let mode): rotationMode = mode
-      case .overlayColor(let color): overlayView.overlayColor = color
-      case .overlayBlurStyle(let style):
-        overlayView.blurringView.effect = UIBlurEffect(style: style)
-      case .overlayBlurOpacity(let opacity): overlayView.blurTargetOpacity = opacity
-      case .overlayColorOpacity(let opacity): overlayView.colorTargetOpacity = opacity
-      case .blurPresentDuration(let duration): overlayView.blurPresentDuration = duration
-      case .blurPresentDelay(let delay): overlayView.blurPresentDelay = delay
-      case .colorPresentDuration(let duration): overlayView.colorPresentDuration = duration
-      case .colorPresentDelay(let delay): overlayView.colorPresentDelay = delay
-      case .blurDismissDuration(let duration): overlayView.blurDismissDuration = duration
-      case .blurDismissDelay(let delay): overlayView.blurDismissDelay = delay
-      case .colorDismissDuration(let duration): overlayView.colorDismissDuration = duration
-      case .colorDismissDelay(let delay): overlayView.colorDismissDelay = delay
-      case .continuePlayVideoOnEnd(let enabled): continueNextVideoOnFinish = enabled
-      case .seeAllCloseLayout(let layout): seeAllCloseLayout = layout
-      case .videoControlsColor(let color): scrubber.tintColor = color
-      case .closeButtonMode(let buttonMode):
+    switch configuration.thumbnailsButtonMode {
 
-        switch buttonMode {
+    case .none: thumbnailsButton = nil
+    case .custom(let button): thumbnailsButton = button
+    case .builtIn: break
+    }
 
-        case .none: closeButton = nil
-        case .custom(let button): closeButton = button
-        case .builtIn: break
-        }
+    switch configuration.deleteButtonMode {
 
-      case .seeAllCloseButtonMode(let buttonMode):
-
-        switch buttonMode {
-
-        case .none: seeAllCloseButton = nil
-        case .custom(let button): seeAllCloseButton = button
-        case .builtIn: break
-        }
-
-      case .thumbnailsButtonMode(let buttonMode):
-
-        switch buttonMode {
-
-        case .none: thumbnailsButton = nil
-        case .custom(let button): thumbnailsButton = button
-        case .builtIn: break
-        }
-
-      case .deleteButtonMode(let buttonMode):
-
-        switch buttonMode {
-
-        case .none: deleteButton = nil
-        case .custom(let button): deleteButton = button
-        case .builtIn: break
-        }
-
-      default: break
-      }
+    case .none: deleteButton = nil
+    case .custom(let button): deleteButton = button
+    case .builtIn: break
     }
 
     pagingDataSource = GalleryPagingDataSource(
@@ -497,7 +479,8 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
   open func page(toIndex index: Int) {
 
-    guard currentIndex != index && index >= 0 && index < self.itemsDataSource.numberOfGalleryItems() else {
+    guard currentIndex != index && index >= 0 && index < self.itemsDataSource.numberOfGalleryItems()
+    else {
       return
     }
 
@@ -554,9 +537,9 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     guard let firstVC = viewControllers?.first, let itemController = firstVC as? ItemController
     else { return }
 
-      Task {
-          await itemController.fetchImage()
-      }
+    Task {
+      await itemController.fetchImage()
+    }
   }
 
   // MARK: - Animations

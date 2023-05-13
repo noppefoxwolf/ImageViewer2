@@ -14,17 +14,12 @@ For the latest changes see the [CHANGELOG](CHANGELOG.md)
 
 ## Install
 
-### CocoaPods
+### Swift Package Manager
 
-```ruby
-pod 'ImageViewer'
+```
+.pa
 ```
 
-### Carthage
-
-```ruby
-github "Krisiacik/ImageViewer"
-```
 
 ## Sample Usage
 

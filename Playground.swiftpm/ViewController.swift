@@ -126,54 +126,41 @@ class ViewController: UIViewController {
     }
 
     func galleryConfiguration() -> GalleryConfiguration {
-
-        return [
-
-            GalleryConfigurationItem.closeButtonMode(.builtIn),
-
-            GalleryConfigurationItem.pagingMode(.standard),
-            GalleryConfigurationItem.presentationStyle(.displacement),
-            GalleryConfigurationItem.hideDecorationViewsOnLaunch(false),
-
-            GalleryConfigurationItem.swipeToDismissMode(.vertical),
-            GalleryConfigurationItem.toggleDecorationViewsBySingleTap(false),
-            GalleryConfigurationItem.activityViewByLongPress(false),
-
-            GalleryConfigurationItem.overlayColor(UIColor(white: 0.035, alpha: 1)),
-            GalleryConfigurationItem.overlayColorOpacity(1),
-            GalleryConfigurationItem.overlayBlurOpacity(1),
-            GalleryConfigurationItem.overlayBlurStyle(UIBlurEffect.Style.light),
-            
-            GalleryConfigurationItem.videoControlsColor(.white),
-
-            GalleryConfigurationItem.maximumZoomScale(8),
-            GalleryConfigurationItem.swipeToDismissThresholdVelocity(500),
-
-            GalleryConfigurationItem.doubleTapToZoomDuration(0.15),
-
-            GalleryConfigurationItem.blurPresentDuration(0.5),
-            GalleryConfigurationItem.blurPresentDelay(0),
-            GalleryConfigurationItem.colorPresentDuration(0.25),
-            GalleryConfigurationItem.colorPresentDelay(0),
-
-            GalleryConfigurationItem.blurDismissDuration(0.1),
-            GalleryConfigurationItem.blurDismissDelay(0.4),
-            GalleryConfigurationItem.colorDismissDuration(0.45),
-            GalleryConfigurationItem.colorDismissDelay(0),
-
-            GalleryConfigurationItem.itemFadeDuration(0.3),
-            GalleryConfigurationItem.decorationViewsFadeDuration(0.15),
-            GalleryConfigurationItem.rotationDuration(0.15),
-
-            GalleryConfigurationItem.displacementDuration(0.55),
-            GalleryConfigurationItem.reverseDisplacementDuration(0.25),
-            GalleryConfigurationItem.displacementTransitionStyle(.springBounce(0.7)),
-            GalleryConfigurationItem.displacementTimingCurve(.linear),
-
-            GalleryConfigurationItem.statusBarHidden(true),
-            GalleryConfigurationItem.displacementKeepOriginalInPlace(false),
-            GalleryConfigurationItem.displacementInsetMargin(50)
-        ]
+        var configuration = GalleryConfiguration()
+        configuration.closeButtonMode = .builtIn
+        configuration.pagingMode = .standard
+        configuration.presentationStyle = .displacement
+        configuration.hideDecorationViewsOnLaunch = false
+        configuration.swipeToDismissMode = .vertical
+        configuration.toggleDecorationViewsBySingleTap = false
+        configuration.activityViewByLongPress = false
+        configuration.overlayColor = UIColor(white: 0.035, alpha: 1)
+        configuration.overlayColorOpacity = 1
+        configuration.overlayBlurOpacity = 1
+        configuration.overlayBlurStyle = UIBlurEffect.Style.light
+        configuration.videoControlsColor = .white
+        configuration.maximumZoomScale = 8
+        configuration.swipeToDismissThresholdVelocity = 500
+        configuration.doubleTapToZoomDuration = 0.15
+        configuration.blurPresentDuration = 0.5
+        configuration.blurPresentDelay = 0
+        configuration.colorPresentDuration = 0.25
+        configuration.colorPresentDelay = 0
+        configuration.blurDismissDuration = 0.1
+        configuration.blurDismissDelay = 0.4
+        configuration.colorDismissDuration = 0.45
+        configuration.colorDismissDelay = 0
+        configuration.itemFadeDuration = 0.3
+        configuration.decorationViewsFadeDuration = 0.15
+        configuration.rotationDuration = 0.15
+        configuration.displacementDuration = 0.55
+        configuration.reverseDisplacementDuration = 0.25
+        configuration.displacementTransitionStyle = .springBounce(0.7)
+        configuration.displacementTimingCurve = .linear
+        configuration.statusBarHidden = true
+        configuration.displacementKeepOriginalInPlace = false
+        configuration.displacementInsetMargin = 50
+        return configuration
     }
 }
 

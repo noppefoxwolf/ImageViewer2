@@ -73,37 +73,26 @@ where T: ItemView {
     self.isInitialController = isInitialController
     self.fetchImageBlock = fetchImageBlock
 
-    for item in configuration {
+    thresholdVelocity = configuration.swipeToDismissThresholdVelocity
+    doubleTapToZoomDuration = configuration.doubleTapToZoomDuration
+    presentationStyle = configuration.presentationStyle
+    pagingMode = configuration.pagingMode
+    displacementDuration = configuration.displacementDuration
+    reverseDisplacementDuration = configuration.reverseDisplacementDuration
+    displacementTimingCurve = configuration.displacementTimingCurve
+    maximumZoomScale = configuration.maximumZoomScale
+    itemFadeDuration = configuration.itemFadeDuration
+    displacementKeepOriginalInPlace = configuration.displacementKeepOriginalInPlace
+    displacementInsetMargin = configuration.displacementInsetMargin
+    swipeToDismissMode = configuration.swipeToDismissMode
+    toggleDecorationViewBySingleTap = configuration.toggleDecorationViewsBySingleTap
+    activityViewByLongPress = configuration.activityViewByLongPress
+    activityIndicatorView.color = configuration.spinnerColor
+    activityIndicatorView.style = configuration.spinnerStyle
+    switch configuration.displacementTransitionStyle {
 
-      switch item {
-
-      case .swipeToDismissThresholdVelocity(let velocity): thresholdVelocity = velocity
-      case .doubleTapToZoomDuration(let duration): doubleTapToZoomDuration = duration
-      case .presentationStyle(let style): presentationStyle = style
-      case .pagingMode(let mode): pagingMode = mode
-      case .displacementDuration(let duration): displacementDuration = duration
-      case .reverseDisplacementDuration(let duration): reverseDisplacementDuration = duration
-      case .displacementTimingCurve(let curve): displacementTimingCurve = curve
-      case .maximumZoomScale(let scale): maximumZoomScale = scale
-      case .itemFadeDuration(let duration): itemFadeDuration = duration
-      case .displacementKeepOriginalInPlace(let keep): displacementKeepOriginalInPlace = keep
-      case .displacementInsetMargin(let margin): displacementInsetMargin = margin
-      case .swipeToDismissMode(let mode): swipeToDismissMode = mode
-      case .toggleDecorationViewsBySingleTap(let enabled): toggleDecorationViewBySingleTap = enabled
-      case .activityViewByLongPress(let enabled): activityViewByLongPress = enabled
-      case .spinnerColor(let color): activityIndicatorView.color = color
-      case .spinnerStyle(let style): activityIndicatorView.style = style
-
-      case .displacementTransitionStyle(let style):
-
-        switch style {
-
-        case .springBounce(let bounce): displacementSpringBounce = bounce
-        case .normal: displacementSpringBounce = 1
-        }
-
-      default: break
-      }
+    case .springBounce(let bounce): displacementSpringBounce = bounce
+    case .normal: displacementSpringBounce = 1
     }
 
     super.init(nibName: nil, bundle: nil)
@@ -200,22 +189,22 @@ where T: ItemView {
 
     createViewHierarchy()
 
-      Task {
-          await fetchImage()
-      }
+    Task {
+      await fetchImage()
+    }
   }
 
   public func fetchImage() async {
-      guard let image = await fetchImageBlock() else { return }
-      activityIndicatorView.stopAnimating()
+    guard let image = await fetchImageBlock() else { return }
+    activityIndicatorView.stopAnimating()
 
-      itemView.image = image
-      itemView.isAccessibilityElement = image.isAccessibilityElement
-      itemView.accessibilityLabel = image.accessibilityLabel
-      itemView.accessibilityTraits = image.accessibilityTraits
+    itemView.image = image
+    itemView.isAccessibilityElement = image.isAccessibilityElement
+    itemView.accessibilityLabel = image.accessibilityLabel
+    itemView.accessibilityTraits = image.accessibilityTraits
 
-      view.setNeedsLayout()
-      view.layoutIfNeeded()
+    view.setNeedsLayout()
+    view.layoutIfNeeded()
   }
 
   override open func viewWillAppear(_ animated: Bool) {
@@ -510,9 +499,7 @@ where T: ItemView {
             completion()
           })
       }
-    }
-
-    else {
+    } else {
 
       itemView.alpha = 0
       itemView.isHidden = false
@@ -595,9 +582,7 @@ where T: ItemView {
 
             completion()
           })
-      }
-
-      else {
+      } else {
         fallthrough
       }
 
