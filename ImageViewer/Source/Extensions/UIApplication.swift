@@ -9,15 +9,6 @@
 import UIKit
 
 extension UIApplication {
-    
-    static func applicationWindow(_ scene: UIWindowScene) -> UIWindow? {
-        scene.keyWindow
-    }
-
-    static var applicationWindow: UIWindow {
-        return UIApplication.shared.keyWindow!
-    }
-
     static var isPortraitOnly: Bool {
 
         let orientations = UIApplication.shared.supportedInterfaceOrientations(for: nil)
