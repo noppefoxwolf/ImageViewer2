@@ -173,7 +173,7 @@ class VideoViewController: ItemBaseController<VideoView> {
 
     func fadeOutEmbeddedPlayButton() {
 
-        if player.isPlaying() && embeddedPlayButton.alpha != 0  {
+        if player.isPlaying && embeddedPlayButton.alpha != 0  {
 
             UIView.animate(withDuration: 0.3, animations: { [weak self] in
 
@@ -192,7 +192,7 @@ class VideoViewController: ItemBaseController<VideoView> {
 
                 case .remoteControlTogglePlayPause:
 
-                    if self.player.isPlaying()  {
+                    if self.player.isPlaying  {
 
                         self.player.pause()
                     }
