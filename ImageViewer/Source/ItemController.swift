@@ -12,15 +12,15 @@ typealias Duration = TimeInterval
 
 public protocol ItemController: AnyObject {
 
-    var index: Int { get }
-    var isInitialController: Bool { get set }
-    var delegate:                 ItemControllerDelegate? { get set }
-    var displacedViewsDataSource: GalleryDisplacedViewsDataSource? { get set }
+  var index: Int { get }
+  var isInitialController: Bool { get set }
+  var delegate: ItemControllerDelegate? { get set }
+  var displacedViewsDataSource: GalleryDisplacedViewsDataSource? { get set }
 
-    func fetchImage()
+  func fetchImage()
 
-    func presentItem(alongsideAnimation: () -> Void, completion: @escaping () -> Void)
-    func dismissItem(alongsideAnimation: () -> Void, completion: @escaping () -> Void)
+  func presentItem(alongsideAnimation: () -> Void, completion: @escaping () -> Void)
+  func dismissItem(alongsideAnimation: () -> Void, completion: @escaping () -> Void)
 
-    func closeDecorationViews(_ duration: TimeInterval)
+  func closeDecorationViews(_ duration: TimeInterval)
 }

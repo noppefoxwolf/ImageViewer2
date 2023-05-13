@@ -9,7 +9,7 @@
 import AVFoundation
 
 extension AVPlayer {
-    var isPlaying: Bool {
-        rate != 0.0 && status == .readyToPlay
-    }
+  var isPlaying: Bool {
+    rate != 0.0 && status == .readyToPlay
+  }
 }

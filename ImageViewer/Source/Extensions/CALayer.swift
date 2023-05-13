@@ -10,9 +10,9 @@ import UIKit
 
 extension CALayer {
 
-    func toImage() -> UIImage {
-        UIGraphicsImageRenderer(size: frame.size).image(actions: { context in
-            self.render(in: context.cgContext)
-        })
-    }
+  func toImage() -> UIImage {
+    UIGraphicsImageRenderer(size: frame.size).image(actions: { context in
+      self.render(in: context.cgContext)
+    })
+  }
 }

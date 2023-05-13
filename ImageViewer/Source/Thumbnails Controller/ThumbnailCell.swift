@@ -10,21 +10,21 @@ import UIKit
 
 class ThumbnailCell: UICollectionViewCell {
 
-    let imageView = UIImageView()
+  let imageView = UIImageView()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        imageView.backgroundColor = UIColor.clear
-        imageView.contentMode = .scaleAspectFit
-        self.contentView.addSubview(imageView)
-    }
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    imageView.backgroundColor = UIColor.clear
+    imageView.contentMode = .scaleAspectFit
+    self.contentView.addSubview(imageView)
+  }
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
 
-    override func layoutSubviews() {
-        imageView.frame = bounds
-        super.layoutSubviews()
-    }
+  override func layoutSubviews() {
+    imageView.frame = bounds
+    super.layoutSubviews()
+  }
 }

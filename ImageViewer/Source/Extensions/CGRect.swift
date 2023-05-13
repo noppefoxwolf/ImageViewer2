@@ -8,9 +8,8 @@
 
 import UIKit
 
-
 extension CGRect {
-    static var one: CGRect {
-        CGRect(x: 0, y: 0, width: 1, height: 1)
-    }
+  static var one: CGRect {
+    CGRect(x: 0, y: 0, width: 1, height: 1)
+  }
 }
