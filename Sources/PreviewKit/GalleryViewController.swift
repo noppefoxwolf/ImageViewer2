@@ -12,7 +12,7 @@ import UIKit
 open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
   // UI
-    private let overlayView: BlurView
+  private let overlayView: BlurView
   /// A custom view on the top of the gallery with layout using default (or custom) pinning settings for header.
   open var headerView: UIView?
   /// A custom view at the bottom of the gallery with layout using default (or custom) pinning settings for footer.
@@ -68,7 +68,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     self.itemsDataSource = itemsDataSource
     self.configuration = configuration
     self.overlayView = BlurView(configuration: configuration.overlayViewConfiguration)
-    
+
     let continueNextVideoOnFinish = configuration.continuePlayVideoOnEnd
     scrubber.tintColor = configuration.videoControlsColor
     switch configuration.closeButtonMode {
@@ -76,7 +76,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     case .custom(let button): closeButton = button
     case .builtIn: break
     }
-      
+
     switch configuration.seeAllCloseButtonMode {
     case .none: seeAllCloseButton = nil
     case .custom(let button): seeAllCloseButton = button

@@ -101,7 +101,7 @@ public struct GalleryConfiguration {
   ///For the image to be reverse displaced, it must be visible in the parent view frame on screen, otherwise it's pointless to do the reverse displacement animation as we would be animating to out of bounds of the screen. However, there might be edge cases where only a tiny percentage of image is visible on screen, so reverse-displacing to that might not be desirable / visually pleasing. To address this problem, we can define a valid area that will be smaller by a given margin and sit centered inside the parent frame. For example, setting a value of 20 means the reverse displaced image must be in a rect that is inside the parent frame and the margin on all sides is to the parent frame is 20 points.
   public var displacementInsetMargin: CGFloat = 50
 
-    public var overlayViewConfiguration: BlurViewConfiguration = .init()
+  public var overlayViewConfiguration: BlurViewConfiguration = .init()
 
   ///The minimum velocity needed for the image to continue on its swipe-to-dismiss path instead of returning to its original position. The velocity is in scalar units per second, which in our case represents points on screen per second. When the thumb moves on screen and eventually is lifted, it traveled along a path and the speed represents the number of points it traveled in the last 1000 msec before it was lifted.
   public var swipeToDismissThresholdVelocity: CGFloat = 500
