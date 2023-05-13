@@ -159,9 +159,8 @@ extension ViewController: GalleryDisplacedViewsDataSource {
 
 extension ViewController: GalleryItemsDataSource {
 
-    func itemCount() -> Int {
-
-        return items.count
+    func numberOfGalleryItems() -> Int {
+        items.count
     }
 
     func provideGalleryItem(_ index: Int) -> GalleryItem {

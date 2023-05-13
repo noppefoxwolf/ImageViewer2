@@ -104,7 +104,7 @@ class ThumbnailsViewController: UICollectionViewController, UICollectionViewDele
   override func collectionView(
     _ collectionView: UICollectionView, numberOfItemsInSection section: Int
   ) -> Int {
-    return itemsDataSource.itemCount()
+    itemsDataSource.numberOfGalleryItems()
   }
 
   override func collectionView(
