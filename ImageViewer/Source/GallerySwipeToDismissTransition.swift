@@ -16,7 +16,7 @@ enum SwipeToDismiss {
 
 final class GallerySwipeToDismissTransition {
 
-    fileprivate weak var scrollView : UIScrollView?
+    private weak var scrollView : UIScrollView?
 
     init(scrollView: UIScrollView?) {
 

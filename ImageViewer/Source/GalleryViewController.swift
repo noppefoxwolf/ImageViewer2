@@ -12,47 +12,47 @@ import AVFoundation
 open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
     // UI
-    fileprivate let overlayView = BlurView()
+    private let overlayView = BlurView()
     /// A custom view on the top of the gallery with layout using default (or custom) pinning settings for header.
     open var headerView: UIView?
     /// A custom view at the bottom of the gallery with layout using default (or custom) pinning settings for footer.
     open var footerView: UIView?
-    fileprivate var closeButton: UIButton? = UIButton.closeButton()
-    fileprivate var seeAllCloseButton: UIButton? = nil
-    fileprivate var thumbnailsButton: UIButton? = UIButton.thumbnailsButton()
-    fileprivate var deleteButton: UIButton? = UIButton.deleteButton()
-    fileprivate let scrubber = VideoScrubber()
+    private var closeButton: UIButton? = UIButton.closeButton()
+    private var seeAllCloseButton: UIButton? = nil
+    private var thumbnailsButton: UIButton? = UIButton.thumbnailsButton()
+    private var deleteButton: UIButton? = UIButton.deleteButton()
+    private let scrubber = VideoScrubber()
 
-    fileprivate weak var initialItemController: ItemController?
+    private weak var initialItemController: ItemController?
 
     // LOCAL STATE
     // represents the current page index, updated when the root view of the view controller representing the page stops animating inside visible bounds and stays on screen.
     public var currentIndex: Int
     // Picks up the initial value from configuration, if provided. Subsequently also works as local state for the setting.
-    fileprivate var decorationViewsHidden = false
-    fileprivate var isAnimating = false
-    fileprivate var initialPresentationDone = false
+    private var decorationViewsHidden = false
+    private var isAnimating = false
+    private var initialPresentationDone = false
 
     // DATASOURCE/DELEGATE
-    fileprivate let itemsDelegate: GalleryItemsDelegate?
-    fileprivate let itemsDataSource: GalleryItemsDataSource
-    fileprivate let pagingDataSource: GalleryPagingDataSource
+    private let itemsDelegate: GalleryItemsDelegate?
+    private let itemsDataSource: GalleryItemsDataSource
+    private let pagingDataSource: GalleryPagingDataSource
 
     // CONFIGURATION
-    fileprivate var spineDividerWidth:         Float = 10
-    fileprivate var galleryPagingMode = GalleryPagingMode.standard
-    fileprivate var headerLayout = HeaderLayout.center(25)
-    fileprivate var footerLayout = FooterLayout.center(25)
-    fileprivate var closeLayout = ButtonLayout.pinRight(8, 16)
-    fileprivate var seeAllCloseLayout = ButtonLayout.pinRight(8, 16)
-    fileprivate var thumbnailsLayout = ButtonLayout.pinLeft(8, 16)
-    fileprivate var deleteLayout = ButtonLayout.pinRight(8, 66)
-    fileprivate var statusBarHidden = true
-    fileprivate var overlayAccelerationFactor: CGFloat = 1
-    fileprivate var rotationDuration = 0.15
-    fileprivate var rotationMode = GalleryRotationMode.always
-    fileprivate let swipeToDismissFadeOutAccelerationFactor: CGFloat = 6
-    fileprivate var decorationViewsFadeDuration = 0.15
+    private var spineDividerWidth:         Float = 10
+    private var galleryPagingMode = GalleryPagingMode.standard
+    private var headerLayout = HeaderLayout.center(25)
+    private var footerLayout = FooterLayout.center(25)
+    private var closeLayout = ButtonLayout.pinRight(8, 16)
+    private var seeAllCloseLayout = ButtonLayout.pinRight(8, 16)
+    private var thumbnailsLayout = ButtonLayout.pinLeft(8, 16)
+    private var deleteLayout = ButtonLayout.pinRight(8, 66)
+    private var statusBarHidden = true
+    private var overlayAccelerationFactor: CGFloat = 1
+    private var rotationDuration = 0.15
+    private var rotationMode = GalleryRotationMode.always
+    private let swipeToDismissFadeOutAccelerationFactor: CGFloat = 6
+    private var decorationViewsFadeDuration = 0.15
 
     /// COMPLETION BLOCKS
     /// If set, the block is executed right after the initial launch animations finish.
@@ -186,7 +186,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     }
 
 
-    fileprivate func configureOverlayView() {
+    private func configureOverlayView() {
 
         overlayView.bounds.size = UIScreen.main.bounds.insetBy(dx: -UIScreen.main.bounds.width / 2, dy: -UIScreen.main.bounds.height / 2).size
         overlayView.center = CGPoint(x: (UIScreen.main.bounds.width / 2), y: (UIScreen.main.bounds.height / 2))
@@ -195,7 +195,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         self.view.sendSubviewToBack(overlayView)
     }
 
-    fileprivate func configureHeaderView() {
+    private func configureHeaderView() {
 
         if let headerView {
             headerView.alpha = 0
@@ -203,7 +203,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         }
     }
 
-    fileprivate func configureFooterView() {
+    private func configureFooterView() {
 
         if let footerView {
             footerView.alpha = 0
@@ -211,7 +211,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         }
     }
 
-    fileprivate func configureCloseButton() {
+    private func configureCloseButton() {
 
         if let closeButton {
             closeButton.addTarget(self, action: #selector(GalleryViewController.closeInteractively), for: .touchUpInside)
@@ -220,7 +220,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         }
     }
 
-    fileprivate func configureThumbnailsButton() {
+    private func configureThumbnailsButton() {
 
         if let thumbnailsButton {
             thumbnailsButton.addTarget(self, action: #selector(GalleryViewController.showThumbnails), for: .touchUpInside)
@@ -229,7 +229,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         }
     }
 
-    fileprivate func configureDeleteButton() {
+    private func configureDeleteButton() {
 
         if let deleteButton {
             deleteButton.addTarget(self, action: #selector(GalleryViewController.deleteItem), for: .touchUpInside)
@@ -238,7 +238,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         }
     }
 
-    fileprivate func configureScrubber() {
+    private func configureScrubber() {
 
         scrubber.alpha = 0
         self.view.addSubview(scrubber)
@@ -271,7 +271,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         initialPresentationDone = true
     }
 
-    fileprivate func presentInitially() {
+    private func presentInitially() {
 
         isAnimating = true
 
@@ -326,7 +326,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         }
     }
 
-    fileprivate func layoutButton(_ button: UIButton?, layout: ButtonLayout) {
+    private func layoutButton(_ button: UIButton?, layout: ButtonLayout) {
 
         guard let button else { return }
 
@@ -346,7 +346,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         }
     }
 
-    fileprivate func layoutHeaderView() {
+    private func layoutHeaderView() {
 
         guard let headerView else { return }
 
@@ -377,7 +377,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         }
     }
 
-    fileprivate func layoutFooterView() {
+    private func layoutFooterView() {
 
         guard let footerView else { return }
 
@@ -408,14 +408,14 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         }
     }
 
-    fileprivate func layoutScrubber() {
+    private func layoutScrubber() {
 
         scrubber.bounds = CGRect(origin: CGPoint.zero, size: CGSize(width: self.view.bounds.width, height: 40))
         scrubber.center = self.view.boundsCenter
         scrubber.frame.origin.y = (footerView?.frame.origin.y ?? self.view.bounds.maxY) - scrubber.bounds.height
     }
 
-    @objc fileprivate func deleteItem() {
+    @objc private func deleteItem() {
 
         deleteButton?.isEnabled = false
         view.isUserInteractionEnabled = false
@@ -431,7 +431,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
     //ThumbnailsimageBlock
 
-    @objc fileprivate func showThumbnails() {
+    @objc private func showThumbnails() {
 
         let thumbnailsController = ThumbnailsViewController(itemsDataSource: self.itemsDataSource)
 
@@ -504,7 +504,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
     // MARK: - Animations
 
-    @objc fileprivate func rotate() {
+    @objc private func rotate() {
 
         /// If the app supports rotation on global level, we don't need to rotate here manually because the rotation
         /// of key Window will rotate all app's content with it via affine transform and from the perspective of the
@@ -538,12 +538,12 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     }
 
     /// Invoked when closed via close button
-    @objc fileprivate func closeInteractively() {
+    @objc private func closeInteractively() {
 
         closeDecorationViews(closedCompletion)
     }
 
-    fileprivate func closeDecorationViews(_ completion: (() -> Void)?) {
+    private func closeDecorationViews(_ completion: (() -> Void)?) {
 
         guard isAnimating == false else { return }
         isAnimating = true
@@ -591,7 +591,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         }
     }
 
-    fileprivate func animateDecorationViews(visible: Bool) {
+    private func animateDecorationViews(visible: Bool) {
 
         let targetAlpha: CGFloat = (visible) ? 1 : 0
 

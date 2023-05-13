@@ -11,13 +11,13 @@ import UIKit
 final class GalleryPagingDataSource: NSObject, UIPageViewControllerDataSource {
 
     weak var itemControllerDelegate: ItemControllerDelegate?
-    fileprivate weak var itemsDataSource:          GalleryItemsDataSource?
-    fileprivate weak var displacedViewsDataSource: GalleryDisplacedViewsDataSource?
+    private weak var itemsDataSource:          GalleryItemsDataSource?
+    private weak var displacedViewsDataSource: GalleryDisplacedViewsDataSource?
 
-    fileprivate let configuration: GalleryConfiguration
-    fileprivate var pagingMode = GalleryPagingMode.standard
-    fileprivate var itemCount: Int { return itemsDataSource?.itemCount() ?? 0 }
-    fileprivate unowned var scrubber: VideoScrubber
+    private let configuration: GalleryConfiguration
+    private var pagingMode = GalleryPagingMode.standard
+    private var itemCount: Int { return itemsDataSource?.itemCount() ?? 0 }
+    private unowned var scrubber: VideoScrubber
 
     init(itemsDataSource: GalleryItemsDataSource, displacedViewsDataSource: GalleryDisplacedViewsDataSource?, scrubber: VideoScrubber, configuration: GalleryConfiguration) {
 

@@ -29,35 +29,35 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
     public var isInitialController = false
     let itemCount: Int
     var swipingToDismiss: SwipeToDismiss?
-    fileprivate var isAnimating = false
-    fileprivate var fetchImageBlock: FetchImageBlock
+    private var isAnimating = false
+    private var fetchImageBlock: FetchImageBlock
 
     //CONFIGURATION
-    fileprivate var presentationStyle = GalleryPresentationStyle.displacement
-    fileprivate var doubleTapToZoomDuration = 0.15
-    fileprivate var displacementDuration: TimeInterval = 0.55
-    fileprivate var reverseDisplacementDuration: TimeInterval = 0.25
-    fileprivate var itemFadeDuration: TimeInterval = 0.3
-    fileprivate var displacementTimingCurve: UIView.AnimationCurve = .linear
-    fileprivate var displacementSpringBounce: CGFloat = 0.7
-    fileprivate let minimumZoomScale: CGFloat = 1
-    fileprivate var maximumZoomScale: CGFloat = 8
-    fileprivate var pagingMode: GalleryPagingMode = .standard
-    fileprivate var thresholdVelocity: CGFloat = 500 // The speed of swipe needs to be at least this amount of pixels per second for the swipe to finish dismissal.
-    fileprivate var displacementKeepOriginalInPlace = false
-    fileprivate var displacementInsetMargin: CGFloat = 50
-    fileprivate var swipeToDismissMode = GallerySwipeToDismissMode.always
-    fileprivate var toggleDecorationViewBySingleTap = true
-    fileprivate var activityViewByLongPress = true
+    private var presentationStyle = GalleryPresentationStyle.displacement
+    private var doubleTapToZoomDuration = 0.15
+    private var displacementDuration: TimeInterval = 0.55
+    private var reverseDisplacementDuration: TimeInterval = 0.25
+    private var itemFadeDuration: TimeInterval = 0.3
+    private var displacementTimingCurve: UIView.AnimationCurve = .linear
+    private var displacementSpringBounce: CGFloat = 0.7
+    private let minimumZoomScale: CGFloat = 1
+    private var maximumZoomScale: CGFloat = 8
+    private var pagingMode: GalleryPagingMode = .standard
+    private var thresholdVelocity: CGFloat = 500 // The speed of swipe needs to be at least this amount of pixels per second for the swipe to finish dismissal.
+    private var displacementKeepOriginalInPlace = false
+    private var displacementInsetMargin: CGFloat = 50
+    private var swipeToDismissMode = GallerySwipeToDismissMode.always
+    private var toggleDecorationViewBySingleTap = true
+    private var activityViewByLongPress = true
 
     /// INTERACTIONS
-    fileprivate var singleTapRecognizer: UITapGestureRecognizer?
-    fileprivate var longPressRecognizer: UILongPressGestureRecognizer?
-    fileprivate let doubleTapRecognizer = UITapGestureRecognizer()
-    fileprivate let swipeToDismissRecognizer = UIPanGestureRecognizer()
+    private var singleTapRecognizer: UITapGestureRecognizer?
+    private var longPressRecognizer: UILongPressGestureRecognizer?
+    private let doubleTapRecognizer = UITapGestureRecognizer()
+    private let swipeToDismissRecognizer = UIPanGestureRecognizer()
 
     // TRANSITIONS
-    fileprivate var swipeToDismissTransition: GallerySwipeToDismissTransition?
+    private var swipeToDismissTransition: GallerySwipeToDismissTransition?
 
 
     // MARK: - Initializers
@@ -124,7 +124,7 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
 
     // MARK: - Configuration
 
-    fileprivate func configureScrollView() {
+    private func configureScrollView() {
 
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
@@ -176,7 +176,7 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
         }
     }
 
-    fileprivate func createViewHierarchy() {
+    private func createViewHierarchy() {
 
         self.view.addSubview(scrollView)
         scrollView.addSubview(itemView)

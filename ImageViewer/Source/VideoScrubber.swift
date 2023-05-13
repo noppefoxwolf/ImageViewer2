@@ -18,11 +18,11 @@ open class VideoScrubber: UIControl {
     let scrubber = Slider.createSlider(320, height: 20, pointerDiameter: 10, barHeight: 2)
     let timeLabel = UILabel(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 50, height: 20)))
     var duration: TimeInterval?
-    fileprivate var periodicObserver: AnyObject?
-    fileprivate var stoppedSlidingTimeStamp = Date()
+    private var periodicObserver: AnyObject?
+    private var stoppedSlidingTimeStamp = Date()
     
     /// The attributes dictionary used for the timeLabel
-    fileprivate var timeLabelAttributes:  [NSAttributedString.Key : Any] {
+    private var timeLabelAttributes:  [NSAttributedString.Key : Any] {
         var attributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 12)]
         
         if let tintColor {

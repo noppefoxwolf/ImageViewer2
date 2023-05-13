@@ -10,10 +10,10 @@ import UIKit
 
 class ThumbnailsViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UINavigationBarDelegate {
 
-    fileprivate let reuseIdentifier = "ThumbnailCell"
-    fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
-    fileprivate var isAnimating = false
-    fileprivate let rotationAnimationDuration = 0.2
+    private let reuseIdentifier = "ThumbnailCell"
+    private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
+    private var isAnimating = false
+    private let rotationAnimationDuration = 0.2
 
     var onItemSelected: ((Int) -> Void)?
     let layout = UICollectionViewFlowLayout()
@@ -71,7 +71,7 @@ class ThumbnailsViewController: UICollectionViewController, UICollectionViewDele
         addCloseButton()
     }
 
-    fileprivate func addCloseButton() {
+    private func addCloseButton() {
         guard let closeButton, let closeLayout else { return }
 
         switch closeLayout {
