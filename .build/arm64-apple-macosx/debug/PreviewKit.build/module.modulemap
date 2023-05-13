@@ -1,0 +1,4 @@
+module PreviewKit {
+    header "/Users/noppe/Developer/GitHub/noppefoxwolf/PreviewKit/.build/arm64-apple-macosx/debug/PreviewKit.build/PreviewKit-Swift.h"
+    requires objc
+}
