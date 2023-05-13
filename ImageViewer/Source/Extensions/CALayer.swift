@@ -11,13 +11,8 @@ import UIKit
 extension CALayer {
 
     func toImage() -> UIImage {
-
-        UIGraphicsBeginImageContextWithOptions(self.frame.size, false, 0)
-        let context = UIGraphicsGetCurrentContext()
-        self.render(in: context!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        return image!
+        UIGraphicsImageRenderer(size: frame.size).image(actions: { context in
+            self.render(in: context.cgContext)
+        })
     }
 }
