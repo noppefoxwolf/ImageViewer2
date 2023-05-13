@@ -25,7 +25,7 @@ open class VideoScrubber: UIControl {
     fileprivate var timeLabelAttributes:  [NSAttributedString.Key : Any] {
         var attributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 12)]
         
-        if let tintColor = tintColor {
+        if let tintColor {
             attributes[NSAttributedString.Key.foregroundColor] = tintColor
         }
         
@@ -35,7 +35,7 @@ open class VideoScrubber: UIControl {
     weak var player: AVPlayer? {
 
         willSet {
-            if let player = player {
+            if let player {
                 
                 ///KVO
                 player.removeObserver(self, forKeyPath: "status")
@@ -45,7 +45,7 @@ open class VideoScrubber: UIControl {
                 NotificationCenter.default.removeObserver(self)
                 
                 ///TIMER
-                if let periodicObserver = self.periodicObserver {
+                if let periodicObserver {
                     
                     player.removeTimeObserver(periodicObserver)
                     self.periodicObserver = nil
@@ -55,7 +55,7 @@ open class VideoScrubber: UIControl {
 
         didSet {
 
-            if let player = player {
+            if let player {
 
                 ///KVO
                 player.addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions.new, context: nil)
@@ -92,7 +92,7 @@ open class VideoScrubber: UIControl {
         player?.removeObserver(self, forKeyPath: "rate")
         scrubber.removeObserver(self, forKeyPath: "isSliding")
 
-        if let periodicObserver = self.periodicObserver {
+        if let periodicObserver {
 
             player?.removeTimeObserver(periodicObserver)
             self.periodicObserver = nil
@@ -184,7 +184,7 @@ open class VideoScrubber: UIControl {
 
         let progress = scrubber.value / scrubber.maximumValue //naturally will be between 0 to 1
 
-        if let player = self.player, let currentItem =  player.currentItem {
+        if let player, let currentItem =  player.currentItem {
 
             let time = currentItem.duration.seconds * Double(progress)
             player.seek(to: CMTime(seconds: time, preferredTimescale: 1))
@@ -201,7 +201,7 @@ open class VideoScrubber: UIControl {
 
     func updateButtons() {
 
-        if let player = self.player {
+        if let player {
 
             self.playButton.isHidden = player.isPlaying
             self.pauseButton.isHidden = !self.playButton.isHidden
@@ -226,15 +226,15 @@ open class VideoScrubber: UIControl {
             return
         }
 
-        if let player = self.player, let duration = self.duration {
+        if let player, let duration {
 
             let progress = player.currentTime().seconds / duration
 
             UIView.animate(withDuration: 0.9, animations: { [weak self] in
 
-                if let strongSelf = self {
+                if let self {
 
-                    strongSelf.scrubber.value = Float(progress) * strongSelf.scrubber.maximumValue
+                    self.scrubber.value = Float(progress) * self.scrubber.maximumValue
                 }
             })
         }
@@ -242,7 +242,7 @@ open class VideoScrubber: UIControl {
 
     @objc func updateCurrentTime() {
 
-        if let duration = self.duration , self.duration != nil {
+        if let duration {
 
             let sliderProgress = scrubber.value / scrubber.maximumValue
             let currentTime = Double(sliderProgress) * duration

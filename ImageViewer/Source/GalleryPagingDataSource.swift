@@ -71,7 +71,7 @@ final class GalleryPagingDataSource: NSObject, UIPageViewControllerDataSource {
 
     func createItemController(_ itemIndex: Int, isInitial: Bool = false) -> UIViewController {
 
-        guard let itemsDataSource = itemsDataSource else { return UIViewController() }
+        guard let itemsDataSource else { return UIViewController() }
 
         let item = itemsDataSource.provideGalleryItem(itemIndex)
 

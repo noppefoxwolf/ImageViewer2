@@ -35,7 +35,7 @@ class ViewController: UIViewController {
 
         for (index, imageView) in imageViews.enumerated() {
 
-            guard let imageView = imageView else { continue }
+            guard let imageView else { continue }
             var galleryItem: GalleryItem!
 
             switch index {

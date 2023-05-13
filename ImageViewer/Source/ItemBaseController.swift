@@ -199,7 +199,7 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
 
         fetchImageBlock { [weak self] image in
 
-            if let image = image {
+            if let image {
 
                 DispatchQueue.main.async {
                     self?.activityIndicatorView.stopAnimating()
@@ -305,7 +305,7 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
         let currentTouchPoint = recognizer.translation(in: view)
 
         if swipingToDismiss == nil { swipingToDismiss = (abs(currentVelocity.x) > abs(currentVelocity.y)) ? .horizontal : .vertical }
-        guard let swipingToDismissInProgress = swipingToDismiss else { return }
+        guard let swipingToDismiss else { return }
 
         switch recognizer.state {
 
@@ -314,10 +314,10 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
 
 
         case .changed:
-            self.handleSwipeToDismissInProgress(swipingToDismissInProgress, forTouchPoint: currentTouchPoint)
+            self.handleSwipeToDismissInProgress(swipingToDismiss, forTouchPoint: currentTouchPoint)
 
         case .ended:
-            self.handleSwipeToDismissEnded(swipingToDismissInProgress, finalVelocity: currentVelocity, finalTouchPoint: currentTouchPoint)
+            self.handleSwipeToDismissEnded(swipingToDismiss, finalVelocity: currentVelocity, finalTouchPoint: currentTouchPoint)
 
         default:
             break
@@ -606,13 +606,13 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
     // Reports the continuous progress of Swipe To Dismiss to the Gallery View Controller
     override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
 
-        guard let swipingToDismissInProgress = swipingToDismiss else { return }
+        guard let swipingToDismiss else { return }
         guard keyPath == "contentOffset" else { return }
 
         let distanceToEdge: CGFloat
         let percentDistance: CGFloat
 
-        switch swipingToDismissInProgress {
+        switch swipingToDismiss {
 
         case .horizontal:
 
@@ -625,9 +625,7 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
             percentDistance = abs(scrollView.contentOffset.y / distanceToEdge)
         }
 
-        if let delegate = self.delegate {
-            delegate.itemController(self, didSwipeToDismissWithDistanceToEdge: percentDistance)
-        }
+        delegate?.itemController(self, didSwipeToDismissWithDistanceToEdge: percentDistance)
     }
 
     public func closeDecorationViews(_ duration: TimeInterval) {

@@ -72,7 +72,7 @@ class ThumbnailsViewController: UICollectionViewController, UICollectionViewDele
     }
 
     fileprivate func addCloseButton() {
-        guard let closeButton = closeButton, let closeLayout = closeLayout else { return }
+        guard let closeButton, let closeLayout else { return }
 
         switch closeLayout {
         case .pinRight(let marginTop, let marginRight):
@@ -110,7 +110,7 @@ class ThumbnailsViewController: UICollectionViewController, UICollectionViewDele
 
             fetchImageBlock() { image in
 
-                if let image = image {
+                if let image {
 
                     cell.imageView.image = image
                 }
@@ -120,7 +120,7 @@ class ThumbnailsViewController: UICollectionViewController, UICollectionViewDele
 
             fetchImageBlock() { image in
 
-                if let image = image {
+                if let image {
 
                     cell.imageView.image = image
                 }
@@ -130,7 +130,7 @@ class ThumbnailsViewController: UICollectionViewController, UICollectionViewDele
 
             fetchImageBlock() { image in
 
-                if let image = image {
+                if let image {
 
                     cell.imageView.image = image
                 }

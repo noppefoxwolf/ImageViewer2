@@ -184,7 +184,7 @@ class VideoViewController: ItemBaseController<VideoView> {
 
     override func remoteControlReceived(with event: UIEvent?) {
 
-        if let event = event {
+        if let event {
 
             if event.type == UIEvent.EventType.remoteControl {
 

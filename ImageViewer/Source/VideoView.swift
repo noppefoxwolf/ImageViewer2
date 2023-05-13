@@ -74,10 +74,7 @@ class VideoView: UIView {
 
                 UIView.animate(withDuration: 0.3, animations: { [weak self] in
 
-                    if let strongSelf = self {
-
-                        strongSelf.previewImageView.alpha = 0
-                    }
+                    self?.previewImageView.alpha = 0
                 })
             }
         }

@@ -105,14 +105,14 @@ private func rotationAngleToMatchDeviceOrientation(_ orientation: UIDeviceOrient
 func rotationAdjustedBounds() -> CGRect {
 
     let applicationWindow = UIApplication.shared.delegate?.window?.flatMap { $0 }
-    guard let window = applicationWindow else { return UIScreen.main.bounds }
+    guard let applicationWindow else { return UIScreen.main.bounds }
 
     if UIApplication.isPortraitOnly {
 
-        return (UIDevice.current.orientation.isLandscape) ? CGRect(origin: CGPoint.zero, size: window.bounds.size.inverted()): window.bounds
+        return (UIDevice.current.orientation.isLandscape) ? CGRect(origin: CGPoint.zero, size: applicationWindow.bounds.size.inverted()): applicationWindow.bounds
     }
 
-    return window.bounds
+    return applicationWindow.bounds
 }
 
 func maximumZoomScale(forBoundingSize boundingSize: CGSize, contentSize: CGSize) -> CGFloat {

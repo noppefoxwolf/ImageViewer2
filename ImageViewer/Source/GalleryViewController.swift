@@ -199,23 +199,23 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
     fileprivate func configureHeaderView() {
 
-        if let header = headerView {
-            header.alpha = 0
-            self.view.addSubview(header)
+        if let headerView {
+            headerView.alpha = 0
+            self.view.addSubview(headerView)
         }
     }
 
     fileprivate func configureFooterView() {
 
-        if let footer = footerView {
-            footer.alpha = 0
-            self.view.addSubview(footer)
+        if let footerView {
+            footerView.alpha = 0
+            self.view.addSubview(footerView)
         }
     }
 
     fileprivate func configureCloseButton() {
 
-        if let closeButton = closeButton {
+        if let closeButton {
             closeButton.addTarget(self, action: #selector(GalleryViewController.closeInteractively), for: .touchUpInside)
             closeButton.alpha = 0
             self.view.addSubview(closeButton)
@@ -224,7 +224,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
     fileprivate func configureThumbnailsButton() {
 
-        if let thumbnailsButton = thumbnailsButton {
+        if let thumbnailsButton {
             thumbnailsButton.addTarget(self, action: #selector(GalleryViewController.showThumbnails), for: .touchUpInside)
             thumbnailsButton.alpha = 0
             self.view.addSubview(thumbnailsButton)
@@ -233,7 +233,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
     fileprivate func configureDeleteButton() {
 
-        if let deleteButton = deleteButton {
+        if let deleteButton {
             deleteButton.addTarget(self, action: #selector(GalleryViewController.deleteItem), for: .touchUpInside)
             deleteButton.alpha = 0
             self.view.addSubview(deleteButton)
@@ -290,16 +290,16 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
             }, completion: { [weak self] in
 
-                if let strongSelf = self {
+                if let self {
 
-                    if strongSelf.decorationViewsHidden == false {
+                    if self.decorationViewsHidden == false {
 
-                        strongSelf.animateDecorationViews(visible: true)
+                        self.animateDecorationViews(visible: true)
                     }
 
-                    strongSelf.isAnimating = false
+                    self.isAnimating = false
 
-                    strongSelf.launchedCompletion?()
+                    self.launchedCompletion?()
                 }
             })
     }
@@ -336,7 +336,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
     fileprivate func layoutButton(_ button: UIButton?, layout: ButtonLayout) {
 
-        guard let button = button else { return }
+        guard let button else { return }
 
         switch layout {
 
@@ -356,63 +356,63 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
     fileprivate func layoutHeaderView() {
 
-        guard let header = headerView else { return }
+        guard let headerView else { return }
 
         switch headerLayout {
 
         case .center(let marginTop):
 
-            header.autoresizingMask = [.flexibleBottomMargin, .flexibleLeftMargin, .flexibleRightMargin]
-            header.center = self.view.boundsCenter
-            header.frame.origin.y = defaultInsets.top + marginTop
+            headerView.autoresizingMask = [.flexibleBottomMargin, .flexibleLeftMargin, .flexibleRightMargin]
+            headerView.center = self.view.boundsCenter
+            headerView.frame.origin.y = defaultInsets.top + marginTop
 
         case .pinBoth(let marginTop, let marginLeft,let marginRight):
 
-            header.autoresizingMask = [.flexibleBottomMargin, .flexibleWidth]
-            header.bounds.size.width = self.view.bounds.width - marginLeft - marginRight
-            header.sizeToFit()
-            header.frame.origin = CGPoint(x: marginLeft, y: defaultInsets.top + marginTop)
+            headerView.autoresizingMask = [.flexibleBottomMargin, .flexibleWidth]
+            headerView.bounds.size.width = self.view.bounds.width - marginLeft - marginRight
+            headerView.sizeToFit()
+            headerView.frame.origin = CGPoint(x: marginLeft, y: defaultInsets.top + marginTop)
 
         case .pinLeft(let marginTop, let marginLeft):
 
-            header.autoresizingMask = [.flexibleBottomMargin, .flexibleRightMargin]
-            header.frame.origin = CGPoint(x: marginLeft, y: defaultInsets.top + marginTop)
+            headerView.autoresizingMask = [.flexibleBottomMargin, .flexibleRightMargin]
+            headerView.frame.origin = CGPoint(x: marginLeft, y: defaultInsets.top + marginTop)
 
         case .pinRight(let marginTop, let marginRight):
 
-            header.autoresizingMask = [.flexibleBottomMargin, .flexibleLeftMargin]
-            header.frame.origin = CGPoint(x: self.view.bounds.width - marginRight - header.bounds.width, y: defaultInsets.top + marginTop)
+            headerView.autoresizingMask = [.flexibleBottomMargin, .flexibleLeftMargin]
+            headerView.frame.origin = CGPoint(x: self.view.bounds.width - marginRight - headerView.bounds.width, y: defaultInsets.top + marginTop)
         }
     }
 
     fileprivate func layoutFooterView() {
 
-        guard let footer = footerView else { return }
+        guard let footerView else { return }
 
         switch footerLayout {
 
         case .center(let marginBottom):
 
-            footer.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin]
-            footer.center = self.view.boundsCenter
-            footer.frame.origin.y = self.view.bounds.height - footer.bounds.height - marginBottom - defaultInsets.bottom
+            footerView.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin]
+            footerView.center = self.view.boundsCenter
+            footerView.frame.origin.y = self.view.bounds.height - footerView.bounds.height - marginBottom - defaultInsets.bottom
 
         case .pinBoth(let marginBottom, let marginLeft,let marginRight):
 
-            footer.autoresizingMask = [.flexibleTopMargin, .flexibleWidth]
-            footer.frame.size.width = self.view.bounds.width - marginLeft - marginRight
-            footer.sizeToFit()
-            footer.frame.origin = CGPoint(x: marginLeft, y: self.view.bounds.height - footer.bounds.height - marginBottom - defaultInsets.bottom)
+            footerView.autoresizingMask = [.flexibleTopMargin, .flexibleWidth]
+            footerView.frame.size.width = self.view.bounds.width - marginLeft - marginRight
+            footerView.sizeToFit()
+            footerView.frame.origin = CGPoint(x: marginLeft, y: self.view.bounds.height - footerView.bounds.height - marginBottom - defaultInsets.bottom)
 
         case .pinLeft(let marginBottom, let marginLeft):
 
-            footer.autoresizingMask = [.flexibleTopMargin, .flexibleRightMargin]
-            footer.frame.origin = CGPoint(x: marginLeft, y: self.view.bounds.height - footer.bounds.height - marginBottom - defaultInsets.bottom)
+            footerView.autoresizingMask = [.flexibleTopMargin, .flexibleRightMargin]
+            footerView.frame.origin = CGPoint(x: marginLeft, y: self.view.bounds.height - footerView.bounds.height - marginBottom - defaultInsets.bottom)
 
         case .pinRight(let marginBottom, let marginRight):
 
-            footer.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin]
-            footer.frame.origin = CGPoint(x: self.view.bounds.width - marginRight - footer.bounds.width, y: self.view.bounds.height - footer.bounds.height - marginBottom - defaultInsets.bottom)
+            footerView.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin]
+            footerView.frame.origin = CGPoint(x: self.view.bounds.width - marginRight - footerView.bounds.width, y: self.view.bounds.height - footerView.bounds.height - marginBottom - defaultInsets.bottom)
         }
     }
 
@@ -443,10 +443,10 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
         let thumbnailsController = ThumbnailsViewController(itemsDataSource: self.itemsDataSource)
 
-        if let closeButton = seeAllCloseButton {
-            thumbnailsController.closeButton = closeButton
+        if let seeAllCloseButton {
+            thumbnailsController.closeButton = seeAllCloseButton
             thumbnailsController.closeLayout = seeAllCloseLayout
-        } else if let closeButton = closeButton {
+        } else if let closeButton {
             let seeAllCloseButton = UIButton(frame: CGRect(origin: CGPoint.zero, size: closeButton.bounds.size))
             seeAllCloseButton.setImage(closeButton.image(for: UIControl.State()), for: UIControl.State())
             seeAllCloseButton.setImage(closeButton.image(for: .highlighted), for: .highlighted)
