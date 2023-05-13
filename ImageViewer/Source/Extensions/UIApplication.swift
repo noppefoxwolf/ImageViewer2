@@ -9,6 +9,10 @@
 import UIKit
 
 extension UIApplication {
+    
+    static func applicationWindow(_ scene: UIWindowScene) -> UIWindow? {
+        scene.keyWindow
+    }
 
     static var applicationWindow: UIWindow {
         return UIApplication.shared.keyWindow!

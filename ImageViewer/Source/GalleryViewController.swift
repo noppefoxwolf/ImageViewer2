@@ -169,8 +169,6 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         self.modalPresentationStyle = .overFullScreen
         self.dataSource = pagingDataSource
 
-        UIApplication.applicationWindow.windowLevel = (statusBarHidden) ? UIWindow.Level.statusBar + 1 : UIWindow.Level.normal
-
         NotificationCenter.default.addObserver(self, selector: #selector(GalleryViewController.rotate), name: UIDevice.orientationDidChangeNotification, object: nil)
 
         if continueNextVideoOnFinish {
@@ -595,8 +593,6 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         self.modalTransitionStyle = .crossDissolve
 
         self.dismiss(animated: animated) {
-
-            UIApplication.applicationWindow.windowLevel = UIWindow.Level.normal
             completion?()
         }
     }
