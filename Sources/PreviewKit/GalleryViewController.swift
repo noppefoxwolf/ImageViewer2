@@ -281,7 +281,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
   open override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
 
-      if configuration.rotationMode == .always && UIApplication.isPortraitOnly {
+    if configuration.rotationMode == .always && UIApplication.isPortraitOnly {
 
       let transform = windowRotationTransform()
       let bounds = rotationAdjustedBounds()
@@ -293,9 +293,9 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     overlayView.frame = view.bounds.insetBy(
       dx: -UIScreen.main.bounds.width * 2, dy: -UIScreen.main.bounds.height * 2)
 
-      layoutButton(closeButton, layout: configuration.closeLayout)
-      layoutButton(thumbnailsButton, layout: configuration.thumbnailsLayout)
-      layoutButton(deleteButton, layout: configuration.deleteLayout)
+    layoutButton(closeButton, layout: configuration.closeLayout)
+    layoutButton(thumbnailsButton, layout: configuration.thumbnailsLayout)
+    layoutButton(deleteButton, layout: configuration.deleteLayout)
     layoutHeaderView()
     layoutFooterView()
     layoutScrubber()
@@ -305,7 +305,8 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     if #available(iOS 11.0, *) {
       return view.safeAreaInsets
     } else {
-        return UIEdgeInsets(top: configuration.statusBarHidden ? 0.0 : 20.0, left: 0.0, bottom: 0.0, right: 0.0)
+      return UIEdgeInsets(
+        top: configuration.statusBarHidden ? 0.0 : 20.0, left: 0.0, bottom: 0.0, right: 0.0)
     }
   }
 
@@ -432,15 +433,15 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     let thumbnailsController = ThumbnailsViewController(itemsDataSource: self.itemsDataSource)
 
     if let seeAllCloseButton {
-        thumbnailsController.closeButton = seeAllCloseButton
-        thumbnailsController.closeLayout = configuration.seeAllCloseLayout
+      thumbnailsController.closeButton = seeAllCloseButton
+      thumbnailsController.closeLayout = configuration.seeAllCloseLayout
     } else if let closeButton {
       let seeAllCloseButton = UIButton(
         frame: CGRect(origin: CGPoint.zero, size: closeButton.bounds.size))
       seeAllCloseButton.setImage(closeButton.image(for: UIControl.State()), for: UIControl.State())
       seeAllCloseButton.setImage(closeButton.image(for: .highlighted), for: .highlighted)
       thumbnailsController.closeButton = seeAllCloseButton
-        thumbnailsController.closeLayout = configuration.closeLayout
+      thumbnailsController.closeLayout = configuration.closeLayout
     }
 
     thumbnailsController.onItemSelected = { [weak self] index in
@@ -531,7 +532,8 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     isAnimating = true
 
     UIView.animate(
-        withDuration: configuration.rotationDuration, delay: 0, options: UIView.AnimationOptions.curveLinear,
+      withDuration: configuration.rotationDuration, delay: 0,
+      options: UIView.AnimationOptions.curveLinear,
       animations: { [weak self] () -> Void in
 
         self?.view.transform = windowRotationTransform()
@@ -565,11 +567,11 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
     if let itemController = self.viewControllers?.first as? ItemController {
 
-        itemController.closeDecorationViews(configuration.decorationViewsFadeDuration)
+      itemController.closeDecorationViews(configuration.decorationViewsFadeDuration)
     }
 
     UIView.animate(
-        withDuration: configuration.decorationViewsFadeDuration,
+      withDuration: configuration.decorationViewsFadeDuration,
       animations: { [weak self] in
 
         self?.headerView?.alpha = 0.0
@@ -617,7 +619,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     let targetAlpha: CGFloat = (visible) ? 1 : 0
 
     UIView.animate(
-        withDuration: configuration.decorationViewsFadeDuration,
+      withDuration: configuration.decorationViewsFadeDuration,
       animations: { [weak self] in
 
         self?.headerView?.alpha = targetAlpha
@@ -712,7 +714,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
     if decorationViewsHidden == false {
 
-        let alpha = 1 - distance * configuration.swipeToDismissThresholdVelocity
+      let alpha = 1 - distance * configuration.swipeToDismissThresholdVelocity
 
       closeButton?.alpha = alpha
       thumbnailsButton?.alpha = alpha
