@@ -195,8 +195,8 @@ where T: ItemView {
   }
 
   public func fetchImage() async {
+    defer { activityIndicatorView.stopAnimating() }
     guard let image = await fetchImageBlock() else { return }
-    activityIndicatorView.stopAnimating()
 
     itemView.image = image
     itemView.isAccessibilityElement = image.isAccessibilityElement
