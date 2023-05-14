@@ -456,7 +456,7 @@ where T: ItemView {
       if presentationStyle == .displacement {
 
         //Prepare the animated imageView
-        let animatedImageView = displacedView.imageView()
+        let animatedImageView = UIImageView(image: image)
 
         //rotate the imageView to starting angle
         if UIApplication.isPortraitOnly == true {
