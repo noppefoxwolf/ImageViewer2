@@ -57,7 +57,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
   required public init?(coder: NSCoder) { fatalError() }
 
   public init(
-    startIndex: Int, itemsDataSource: GalleryItemsDataSource,
+    startIndex: Int = 0, itemsDataSource: GalleryItemsDataSource,
     itemsDelegate: GalleryItemsDelegate? = nil,
     displacedViewsDataSource: GalleryDisplacedViewsDataSource? = nil,
     configuration: GalleryConfiguration = .init()

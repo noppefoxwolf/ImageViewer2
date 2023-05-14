@@ -21,6 +21,5 @@ public protocol DisplaceableView {
 }
 
 public protocol GalleryDisplacedViewsDataSource: AnyObject {
-
-  func provideDisplacementItem(atIndex index: Int) -> DisplaceableView?
+  func transitionView(at index: Int) -> DisplaceableView?
 }

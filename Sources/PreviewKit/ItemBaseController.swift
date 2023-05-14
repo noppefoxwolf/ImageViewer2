@@ -449,7 +449,7 @@ where T: ItemView {
 
     alongsideAnimation()
 
-    if var displacedView = displacedViewsDataSource?.provideDisplacementItem(atIndex: index),
+    if var displacedView = displacedViewsDataSource?.transitionView(at: index),
       let image = displacedView.image
     {
 
@@ -528,7 +528,7 @@ where T: ItemView {
 
   func findVisibleDisplacedView() -> DisplaceableView? {
 
-    guard let displacedView = displacedViewsDataSource?.provideDisplacementItem(atIndex: index)
+    guard let displacedView = displacedViewsDataSource?.transitionView(at: index)
     else { return nil }
 
     let displacedViewFrame = displacedView.frameInCoordinatesOfScreen()

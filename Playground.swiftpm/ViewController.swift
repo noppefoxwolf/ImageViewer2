@@ -165,10 +165,8 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: GalleryDisplacedViewsDataSource {
-
-    func provideDisplacementItem(atIndex index: Int) -> DisplaceableView? {
-
-        return index < items.count ? items[index].imageView : nil
+    func transitionView(at index: Int) -> DisplaceableView? {
+        index < items.count ? items[index].imageView : nil
     }
 }
 
