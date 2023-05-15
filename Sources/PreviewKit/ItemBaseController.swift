@@ -154,7 +154,7 @@ where T: ItemView {
       self.singleTapRecognizer = singleTapRecognizer
     }
 
-    if activityViewByLongPress == true {
+    if activityViewByLongPress {
 
       let longPressRecognizer = UILongPressGestureRecognizer()
 

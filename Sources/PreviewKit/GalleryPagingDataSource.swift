@@ -80,10 +80,11 @@ final class GalleryPagingDataSource: NSObject, UIPageViewControllerDataSource {
 
     switch item {
 
-    case .image(let fetchImageBlock):
+    case .image(let fetchPreviewImageBlock, let fetchImageBlock):
 
       let imageController = ImageViewController(
         index: itemIndex, itemCount: itemsDataSource.numberOfGalleryItems(),
+        fetchPreviewImageBlock: fetchPreviewImageBlock,
         fetchImageBlock: fetchImageBlock,
         configuration: configuration, isInitialController: isInitial)
       imageController.delegate = itemControllerDelegate

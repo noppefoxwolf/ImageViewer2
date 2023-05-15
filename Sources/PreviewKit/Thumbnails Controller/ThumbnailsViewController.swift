@@ -119,7 +119,7 @@ class ThumbnailsViewController: UICollectionViewController, UICollectionViewDele
 
     switch item {
 
-    case .image(let fetchImageBlock):
+    case .image(_, let fetchImageBlock):
       Task {
         let image = await fetchImageBlock()
         cell.imageView.image = image

@@ -87,7 +87,7 @@ class ViewController: UIViewController {
             default:
 
                 let image = imageView.image ?? UIImage(named: "0")!
-                galleryItem = GalleryItem.image { image }
+                galleryItem = GalleryItem.image(fetchPreviewImageBlock: { image }, fetchImageBlock: { image })
             }
 
             items.append(DataItem(imageView: imageView, galleryItem: galleryItem))
@@ -105,8 +105,8 @@ class ViewController: UIViewController {
         let footerView = CounterView(frame: frame, currentIndex: displacedViewIndex, count: items.count)
 
         let galleryViewController = GalleryViewController(startIndex: displacedViewIndex, itemsDataSource: self, itemsDelegate: self, displacedViewsDataSource: self, configuration: galleryConfiguration())
-        galleryViewController.headerView = headerView
-        galleryViewController.footerView = footerView
+//        galleryViewController.headerView = headerView
+        galleryViewController.footerView = UIView()
 
         galleryViewController.launchedCompletion = { print("LAUNCHED") }
         galleryViewController.closedCompletion = { print("CLOSED") }
