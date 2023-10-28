@@ -10,13 +10,13 @@ import UIKit
 
 extension DisplaceableView {
 
-  func imageView() -> UIImageView {
+    func imageView() -> UIImageView {
 
-    let imageView = UIImageView(image: self.image)
-    imageView.bounds = self.bounds
-    imageView.center = self.center
-    imageView.contentMode = self.contentMode
+        let imageView = UIImageView(image: self.image)
+        imageView.bounds = self.bounds
+        imageView.center = self.center
+        imageView.contentMode = self.contentMode
 
-    return imageView
-  }
+        return imageView
+    }
 }

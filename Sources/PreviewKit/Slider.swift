@@ -10,23 +10,23 @@ import UIKit
 
 class Slider: UISlider {
 
-  @objc dynamic var isSliding: Bool = false
+    @objc dynamic var isSliding: Bool = false
 
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    super.touchesBegan(touches, with: event)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
 
-    isSliding = true
-  }
+        isSliding = true
+    }
 
-  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    super.touchesEnded(touches, with: event)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
 
-    isSliding = false
-  }
+        isSliding = false
+    }
 
-  override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-    super.touchesCancelled(touches, with: event)
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
 
-    isSliding = false
-  }
+        isSliding = false
+    }
 }

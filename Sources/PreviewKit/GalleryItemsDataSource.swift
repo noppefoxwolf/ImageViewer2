@@ -9,6 +9,6 @@
 import UIKit
 
 public protocol GalleryItemsDataSource: AnyObject {
-  func numberOfGalleryItems() -> Int
-  func galleryItem(at index: Int) -> GalleryItem
+    func numberOfGalleryItems() -> Int
+    func galleryItem(at index: Int) -> GalleryItem
 }

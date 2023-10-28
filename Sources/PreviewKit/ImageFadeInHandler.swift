@@ -10,15 +10,15 @@ import Foundation
 
 final class ImageFadeInHandler {
 
-  private var presentedImages: [Int] = []
+    private var presentedImages: [Int] = []
 
-  func addPresentedImageIndex(_ index: Int) {
+    func addPresentedImageIndex(_ index: Int) {
 
-    presentedImages.append(index)
-  }
+        presentedImages.append(index)
+    }
 
-  func wasPresented(_ index: Int) -> Bool {
+    func wasPresented(_ index: Int) -> Bool {
 
-    return presentedImages.contains(index)
-  }
+        return presentedImages.contains(index)
+    }
 }

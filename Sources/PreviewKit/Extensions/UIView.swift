@@ -10,40 +10,52 @@ import UIKit
 
 extension UIView {
 
-  public var boundsCenter: CGPoint {
+    public var boundsCenter: CGPoint {
 
-    return CGPoint(x: self.bounds.width / 2, y: self.bounds.height / 2)
-  }
+        return CGPoint(x: self.bounds.width / 2, y: self.bounds.height / 2)
+    }
 
-  func addSubviews(_ subviews: UIView...) {
+    func addSubviews(_ subviews: UIView...) {
 
-    for view in subviews { self.addSubview(view) }
-  }
+        for view in subviews { self.addSubview(view) }
+    }
 
-  static func animateWithDuration(
-    _ duration: TimeInterval, delay: TimeInterval, animations: @escaping () -> Void
-  ) {
+    static func animateWithDuration(
+        _ duration: TimeInterval,
+        delay: TimeInterval,
+        animations: @escaping () -> Void
+    ) {
 
-    UIView.animate(
-      withDuration: duration, delay: delay, options: UIView.AnimationOptions(),
-      animations: animations, completion: nil)
-  }
+        UIView.animate(
+            withDuration: duration,
+            delay: delay,
+            options: UIView.AnimationOptions(),
+            animations: animations,
+            completion: nil
+        )
+    }
 
-  static func animateWithDuration(
-    _ duration: TimeInterval, delay: TimeInterval, animations: @escaping () -> Void,
-    completion: ((Bool) -> Void)?
-  ) {
+    static func animateWithDuration(
+        _ duration: TimeInterval,
+        delay: TimeInterval,
+        animations: @escaping () -> Void,
+        completion: ((Bool) -> Void)?
+    ) {
 
-    UIView.animate(
-      withDuration: duration, delay: delay, options: UIView.AnimationOptions(),
-      animations: animations, completion: completion)
-  }
+        UIView.animate(
+            withDuration: duration,
+            delay: delay,
+            options: UIView.AnimationOptions(),
+            animations: animations,
+            completion: completion
+        )
+    }
 }
 
 extension DisplaceableView {
 
-  func frameInCoordinatesOfScreen() -> CGRect {
+    func frameInCoordinatesOfScreen() -> CGRect {
 
-    return UIView().convert(self.bounds, to: UIScreen.main.coordinateSpace)
-  }
+        return UIView().convert(self.bounds, to: UIScreen.main.coordinateSpace)
+    }
 }

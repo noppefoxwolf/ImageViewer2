@@ -12,12 +12,25 @@ extension UIImageView: ItemView {}
 
 class ImageViewController: ItemBaseController<UIImageView> {
     let fetchPreviewImageBlock: FetchImageBlock?
-    
-    init(index: Int, itemCount: Int, fetchPreviewImageBlock: FetchImageBlock?, fetchImageBlock: @escaping FetchImageBlock, configuration: GalleryConfiguration, isInitialController: Bool = false) {
+
+    init(
+        index: Int,
+        itemCount: Int,
+        fetchPreviewImageBlock: FetchImageBlock?,
+        fetchImageBlock: @escaping FetchImageBlock,
+        configuration: GalleryConfiguration,
+        isInitialController: Bool = false
+    ) {
         self.fetchPreviewImageBlock = fetchPreviewImageBlock
-        super.init(index: index, itemCount: itemCount, fetchImageBlock: fetchImageBlock, configuration: configuration)
+        super
+            .init(
+                index: index,
+                itemCount: itemCount,
+                fetchImageBlock: fetchImageBlock,
+                configuration: configuration
+            )
     }
-    
+
     override func fetchImage() async {
         let previewTask = Task {
             await self.fetchPreviewImage()
@@ -25,7 +38,7 @@ class ImageViewController: ItemBaseController<UIImageView> {
         await super.fetchImage()
         previewTask.cancel()
     }
-    
+
     func fetchPreviewImage() async {
         defer { activityIndicatorView.stopAnimating() }
         guard let image = await fetchPreviewImageBlock?() else { return }
